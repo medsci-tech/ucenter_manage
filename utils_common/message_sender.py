@@ -60,7 +60,7 @@ def check_user(phone, code):
         return False
 
     time_diff = datetime.datetime.now() - user.update_time
-    if time_diff.seconds > 180:
+    if time_diff.seconds > 60:
         return False
 
     return True
