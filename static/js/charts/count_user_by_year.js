@@ -33,7 +33,6 @@ var vm_count_user_by_year = new Vue({
     },
     methods: {
         chart: function() {
-            console.log('OK');
             $('#' + this.title + '_chart').height(this.box_size.height);
 
             var option = {
