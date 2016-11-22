@@ -14,7 +14,7 @@ def index(request):
     ret = Manager.objects.all()
     for user in ret:
         print(user.name)
-    return HttpResponse('index')
+        return render(request, 'manage.html')
 
 
 def get_code(request, phone):

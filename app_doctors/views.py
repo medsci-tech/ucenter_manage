@@ -15,7 +15,7 @@ def index(request, year):
     ret = year_user(int(year), user_role='doctor')
     print('*' * 10)
     print(ret)
-    return HttpResponse('doctors_year_users')
+    return render(request, 'doctors.html')
 
 
 def doctors_month_user(request, year):

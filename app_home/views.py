@@ -21,8 +21,8 @@ def home_all_user(request):
     print(ret)
     returnData = {'code': 200, 'data': json.dumps(ret)}
 
-    response = HttpResponse(returnData, content_type="application/json")
-    return response
+    # response = HttpResponse(returnData, content_type="application/json")
+    return json.dumps(ret)
 
 
 def home_year_user(request, year):

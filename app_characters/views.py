@@ -12,7 +12,7 @@ from utils_analyzer.character_analyzer import user_projects
 def index(request, phone):
     ret = user_info(phone)
     print(ret)
-    return HttpResponse('index')
+    return render(request, 'character.html')
 
 
 def characters(request, phone):
