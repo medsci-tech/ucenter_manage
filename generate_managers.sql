@@ -1,6 +1,16 @@
 insert into app_login_manager
 (id, name, phone, code, update_time)
 values
+(1, '许守明', '15623093771', '0', datetime('now', 'localtime'));
+
+insert into app_login_manager
+(id, name, phone, code, update_time)
+values
+(2, '余鹏飞', '13237177277', '0', datetime('now', 'localtime'));
+
+insert into app_login_manager
+(id, name, phone, code, update_time)
+values
 (3, '柳俊', '15827388360', '0', datetime('now', 'localtime'));
 
 insert into app_login_manager
