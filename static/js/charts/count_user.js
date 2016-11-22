@@ -12,7 +12,7 @@ var vm_count_user = new Vue({
     },
     computed: {
         data: function() {
-            return this.get_data.map(function(item){
+            return this.get_data.map(function(item) {
                 return {
                     value: item.count,
                     name: item.role
@@ -20,7 +20,7 @@ var vm_count_user = new Vue({
             })
         },
         data_head: function() {
-            return this.data.map(function(item){
+            return this.data.map(function(item) {
                 return item.name
             })
         }
@@ -77,17 +77,11 @@ var vm_count_user = new Vue({
         },
         refresh: function(e) {
             var vm = this;
-            if (e == 0) {
-                $.get(vm.get_url, {}, function(data) {
-                    vm.get_data = data;
-                    vm.chart();
-                });
-            } else {
-                $.get(e, {}, function(data) {
-                    vm.get_data = data;
-                    vm.chart();
-                });
-            }
+
+            $.get(vm.get_url, {}, function(data) {
+                vm.get_data = data;
+                vm.chart();
+            });
 
         }
     },

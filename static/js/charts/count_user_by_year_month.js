@@ -7,9 +7,10 @@ var vm_count_user_by_year_month = new Vue({
             width: 'auto',
             height: 400
         },
-        get_url: 'month_user/2016',
+        get_url: 'month_user/',
         color: ['#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3'],
         data_head: ['doctor', 'user', 'volunteer'],
+        select: '2016',
 
     },
     computed: {
@@ -32,13 +33,23 @@ var vm_count_user_by_year_month = new Vue({
                 result.push(i);
             }
             return result;
-        }
+        },
+        change_select: function() {
+            this.refresh(this.select);
+        },
     },
     methods: {
         chart: function() {
             $('#' + this.title + '_chart').height(this.box_size.height);
 
-            var series = 
+            var vm = this;
+            var series = vm.data_head.map(function(item, index) {
+                return {
+                    type: 'bar',
+                    name: item,
+                    data: vm.data[item],
+                }
+            });
 
             var option = {
                 // title: {
@@ -79,19 +90,7 @@ var vm_count_user_by_year_month = new Vue({
                     type: 'value',
                     name: 'people'
                 }],
-                series: [{
-                    type: 'bar',
-                    name: 'doctor',
-                    data: this.data.doctor,
-                }, {
-                    type: 'bar',
-                    name: 'user',
-                    data: this.data.user,
-                }, {
-                    type: 'bar',
-                    name: 'volunteer',
-                    data: this.data.volunteer,
-                }]
+                series: series,
             };
             var chart = echarts.init(document.getElementById(this.title + '_chart'));
             chart.setOption(option);
@@ -107,27 +106,15 @@ var vm_count_user_by_year_month = new Vue({
         },
         refresh: function(e) {
             var vm = this;
-            if (e == 0) {
-                $.get(vm.get_url, {}, function(data) {
-                    vm.get_data = data;
-                    vm.chart();
-                });
-            } else {
-                $.get(e, {}, function(data) {
-                    vm.get_data = data;
-                    vm.chart();
-                });
-            }
+
+            $.get(vm.get_url + e, {}, function(data) {
+                vm.get_data = data;
+                vm.chart();
+            });
 
         }
     },
     compiled: function() {
-
-        var vm = this;
-
-        $.get(this.get_url, {}, function(data) {
-            vm.get_data = data;
-            vm.chart();
-        });
+        this.refresh(this.select);
     }
 });
