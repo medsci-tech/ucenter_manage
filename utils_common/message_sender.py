@@ -1,7 +1,7 @@
 import requests
 import random
 import datetime
-from models.managers import Manager
+from app_login.models import Manager
 
 
 api_host = r'http://sms-api.luosimao.com/v1/send.json'
@@ -60,7 +60,7 @@ def check_user(phone, code):
         return False
 
     time_diff = datetime.datetime.now() - user.update_time
-    if time_diff.seconds > 180:
+    if time_diff.seconds > 60:
         return False
 
     return True
