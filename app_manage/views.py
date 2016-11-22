@@ -7,14 +7,7 @@ from utils_common.message_sender import check_user
 
 # Create your views here.
 def index(request):
-    manager = Manager()
-    manager.name = 'xsm'
-    manager.phone = '15623093771'
-    manager.save()
-    ret = Manager.objects.all()
-    for user in ret:
-        print(user.name)
-        return render(request, 'manage.html')
+    return render(request, 'manage.html')
 
 
 def get_code(request, phone):
