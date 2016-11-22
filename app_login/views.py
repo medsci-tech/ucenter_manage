@@ -8,7 +8,16 @@ from utils_common.message_sender import check_user
 
 # Create your views here.
 def index(request):
-    return render(request, 'login.html')
+    if request.method == 'GET':
+        return render(request, 'login.html')
+    phone = request.POST.get('phone')
+    code = request.POST.get('code')
+
+    ret = check_user(phone, code)
+    if not ret:
+        return JsonResponse({'error': 1, 'msg': 'check error'})
+    request.session['user_phone'] = phone
+    return HttpResponseRedirect('/home/')
 
 
 def get_code(request, phone):
@@ -28,4 +37,4 @@ def check_code(request, phone, code):
     if not ret:
         return JsonResponse({'error': 1, 'msg': 'check error'})
     request.session['user_phone'] = phone
-    return HttpResponseRedirect('home/')
+    return HttpResponseRedirect('/home/')
