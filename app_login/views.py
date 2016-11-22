@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from utils_common.message_sender import send_message
+from utils_common.message_sender import update_user
 from utils_common.message_sender import check_user
 
 
@@ -10,9 +11,14 @@ def index(request):
 
 
 def get_code(request, phone):
-    ret = send_message(phone)
+    key = send_message(phone)
+    if not key:
+        return JsonResponse({'error': 1})
+
+    ret = update_user(phone, key)
     if not ret:
         return JsonResponse({'error': 1})
+
     return JsonResponse({'error': 0})
 
 

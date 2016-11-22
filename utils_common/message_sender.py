@@ -23,6 +23,7 @@ def generate_key():
 def send_message(phone):
     global api_host
     global api_key
+
     cmd_str = api_host
     auth_tuple = ("api", api_key)
 
@@ -33,9 +34,9 @@ def send_message(phone):
 
     response = requests.post(cmd_str, auth=auth_tuple, data=data_dict, timeout=3, verify=False)
     if response.json()['error'] != 0:
-        return False
+        return None
 
-    return update_user(phone, key)
+    return key
 
 
 def update_user(phone, code):
