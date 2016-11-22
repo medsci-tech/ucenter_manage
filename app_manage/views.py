@@ -17,14 +17,14 @@ def index(request):
     return HttpResponse('index')
 
 
-def get_code(phone):
+def get_code(request, phone):
     ret = send_message(phone)
     if not ret:
         pass
     return HttpResponse('get_code')
 
 
-def check_code(phone, code):
+def check_code(request, phone, code):
     ret = check_user(phone, code)
     if not ret:
         pass
