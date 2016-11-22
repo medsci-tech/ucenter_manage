@@ -19,7 +19,8 @@ def index(request):
 def home_all_user(request):
     ret = all_user()
     print(ret)
-    return json.dumps(ret)
+    response = HttpResponse(json.dumps(ret), content_type="application/json")
+    return response
 
 
 def home_year_user(request, year):
