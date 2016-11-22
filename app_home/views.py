@@ -19,7 +19,9 @@ def index(request):
 def home_all_user(request):
     ret = all_user()
     print(ret)
-    response = HttpResponse(json.dumps(ret), content_type="application/json")
+    returnData = {'code': 200, 'data': json.dumps(ret)}
+
+    response = HttpResponse(returnData, content_type="application/json")
     return response
 
 
