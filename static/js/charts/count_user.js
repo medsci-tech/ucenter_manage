@@ -12,18 +12,17 @@ var vm_count_user = new Vue({
     },
     computed: {
         data: function() {
-            return JSON.parse(
-                this.get_data
-                .replace(/count/g, 'value')
-                .replace(/role/g, 'name')
-            );
+            return this.get_data.map(function(item){
+                return {
+                    value: item.count,
+                    name: item.role
+                }
+            })
         },
         data_head: function() {
-            var result = [];
-            for (item in this.data) {
-                result.push(this.data[item].name);
-            }
-            return result;
+            return this.data.map(function(item){
+                return item.name
+            })
         }
     },
     methods: {
@@ -97,7 +96,7 @@ var vm_count_user = new Vue({
         var vm = this;
 
         $.get(this.get_url, {}, function(data) {
-             vm.get_data = data;
+            vm.get_data = data;
             // vm.get_data = '[{"role": "doctor", "count": 102}, {"role": "user", "count": 125}, {"role": "volunteer", "count": 78}, {"role": "enterprise", "count": 21}]';
             vm.chart();
         });
