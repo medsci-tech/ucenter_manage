@@ -25,7 +25,7 @@ def get_code(phone):
 
 
 def check_code(phone, code):
-    ret = check_user()
+    ret = check_user(phone, code)
     if not ret:
         pass
     return HttpResponse('check_code')
