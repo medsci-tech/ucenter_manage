@@ -8,26 +8,24 @@ var vm_count_user_by_year_month = new Vue({
             height: 400
         },
         get_url: 'month_user/2016',
-        color: ['#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3']
+        color: ['#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3'],
+        data_head: ['doctor', 'user', 'volunteer'],
+
     },
     computed: {
         data: function() {
-            var data = JSON.parse(
-                this.get_data
-                .replace(/count/g, 'value')
-                .replace(/role/g, 'name')
-            );
-            var result = {
-                doctor: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                user: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                volunteer: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            };
-            for (item in data) {
-                result[data[item].name][data[item].month - 1] = data[item].value
+            var result = {};
+
+            for (i in this.data_head) {
+                result[this.data_head[i]] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
             }
+
+            for (i in this.get_data) {
+                result[this.get_data[i].role][this.get_data[i].month - 1] = this.get_data[i].count;
+            }
+
             return result;
         },
-        data_head: ['doctor', 'user', 'volunteer'],
         xAxis_data: function() {
             var result = [];
             for (var i = 1; i <= 12; i++) {
@@ -39,6 +37,8 @@ var vm_count_user_by_year_month = new Vue({
     methods: {
         chart: function() {
             $('#' + this.title + '_chart').height(this.box_size.height);
+
+            var series = 
 
             var option = {
                 // title: {
