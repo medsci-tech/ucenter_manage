@@ -1,7 +1,7 @@
 import requests
 import random
 import datetime
-from models.managers import Manager
+from app_login.models import Manager
 
 
 api_host = r'http://sms-api.luosimao.com/v1/send.json'
