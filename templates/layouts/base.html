@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <!-- <link rel="shortcut icon" href="/favicon.ico"> -->
+    <title>User Center</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/vendor/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/vendor/font-awesome.min.css')}}">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/vendor/swiper.min.css')}}"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/vendor/buttons.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css')}}">
+
+    {% block css %}{% endblock %}
+</head>
+
+<body>
+    {% include 'layouts/top-navbar.html'%}
+
+    {% block content %} {% endblock %} 
+
+
+    <!-- <script type="text/javascript" src="{{ url_for('static', filename='js/vendor/d3js/d3.js') }}"></script> -->
+    <script type="text/javascript" src="{{ url_for('static', filename='js/vendor/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/vendor/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/vendor/jquery.pin.min.js') }}"></script>
+    <!-- <script type="text/javascript" src="{{ url_for('static', filename='js/vendor/swiper.min.js') }}"></script> -->
+    <script type="text/javascript" src="{{ url_for('static', filename='js/vendor/vue.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/vendor/echarts.js') }}"></script>
+    {% block js %}{% endblock %}
+</body>
+
+</html>

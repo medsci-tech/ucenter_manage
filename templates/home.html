@@ -1,0 +1,129 @@
+{% extends 'layouts/base.html' %} {% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/charts.css') }}"> {% endblock %} {% block content %}
+<div class="container" style="margin-top: 50px;">
+    <!-- user_count -->
+    <div class="page-header">
+        <h1>Uesr Count<small>&emsp;demo</small></h1>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-6">
+            <div class="panel" id='count_user'>
+                <div class="panel-heading">
+                    Count User (all)
+                    <button class="button button-borderless right" @click='refresh(0)'><i class="fa fa-refresh"></i></button>
+                </div>
+                <div class="panel-body">
+                    <!-- <canvas></canvas> -->
+                    <div :id="title+'_chart'"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6">
+            <div class="panel" id='count_user_by_year'>
+                <div class="panel-heading">
+                    Count User 
+                    <select class="form-control" v-model="select">
+                        <option value="2016">2016</option>
+                        <option value="2015">2015</option>
+                    </select>
+                    <button class="button button-borderless right" @click='refresh(select)'><i class="fa fa-refresh"></i></button>
+                </div>
+                <div class="panel-body row">
+                    <!-- <canvas></canvas> -->
+                    <div :id="title+'_chart'"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12">
+            <div class="panel" id='count_user_by_year_month'>
+                <div class="panel-heading">
+                    Count User by Month (2016)
+                    <button class="button button-borderless right" @click='refresh(0)'><i class="fa fa-refresh"></i></button>
+                </div>
+                <div class="panel-body">
+                    <!-- <canvas></canvas> -->
+                    <div :id="title+'_chart'"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12">
+            <div class="panel" id='count_user_by_month_day'>
+                <div class="panel-heading">
+                    Count User by Day (2016-09)
+                    <button class="button button-borderless right" @click='refresh(0)'><i class="fa fa-refresh"></i></button>
+                </div>
+                <div class="panel-body">
+                    <!-- <canvas></canvas> -->
+                    <div :id="title+'_chart'"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- bean_count -->
+    <div class="page-header">
+        <h1>Bean Count<small>&emsp;demo</small></h1>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-4">
+            <div class="panel" id='count_bean'>
+                <div class="panel-heading">
+                    Count Bean (all)
+                    <button class="button button-borderless right" @click='refresh(0)'><i class="fa fa-refresh"></i></button>
+                </div>
+                <div class="panel-body">
+                    <!-- <canvas></canvas> -->
+                    <div :id="title+'_chart'"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-8">
+            <div class="panel" id='count_bean_by_year'>
+                <div class="panel-heading">
+                    Count Bean (2016)
+                    <button class="button button-borderless right" @click='refresh(0)'><i class="fa fa-refresh"></i></button>
+                </div>
+                <div class="panel-body">
+                    <!-- <canvas></canvas> -->
+                    <div :id="title+'_chart'"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12">
+            <div class="panel" id='count_bean_by_year_month_compare'>
+                <div class="panel-heading">
+                    Compare Count Bean by Month (2016)
+                    <button class="button button-borderless right" @click='refresh(0)'><i class="fa fa-refresh"></i></button>
+                </div>
+                <div class="panel-body">
+                    <!-- <canvas></canvas> -->
+                    <div :id="title+'_chart'"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12">
+            <div class="panel" id='count_bean_by_month_day'>
+                <div class="panel-heading">
+                    Count Bean by Day (2016-08)
+                    <button class="button button-borderless right" @click='refresh(0)'><i class="fa fa-refresh"></i></button>
+                </div>
+                <div class="panel-body">
+                    <!-- <canvas></canvas> -->
+                    <div :id="title+'_chart'"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<br>
+<br> {% endblock %} {% block js %}
+<script type="text/javascript" src="{{ url_for('static', filename='js/charts/count_user.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/charts/count_user_by_year.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/charts/count_user_by_year_month.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/charts/count_user_by_month_day.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/charts/count_bean.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/charts/count_bean_by_year.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/charts/count_bean_by_month_day.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/charts/count_bean_by_year_month_compare.js') }}"></script>
+{% endblock %}

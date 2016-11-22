@@ -1,0 +1,162 @@
+{% extends 'layouts/base.html' %}{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/charts.css') }}"> {% endblock %} {% block content %} 
+<div class="container" style="margin-top: 50px;">
+    <!-- user_count -->
+    <div class="page-header">
+        <h1>Doctor Count<small>&emsp;demo</small></h1>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-4">
+            <div class="panel" id='count_doctor'>
+                <div class="panel-heading">
+                    Count Doctor (2016)
+                    <button class="button button-borderless right" @click='refresh(0)'><i class="fa fa-refresh"></i></button>
+                </div>
+                <div class="panel-body">
+                    <div :id="title+'_chart'"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-8">
+            <div class="panel" id='count_doctor_by_year_month'>
+                <div class="panel-heading">
+                    Count Doctor (2016)
+                    <button class="button button-borderless right" @click='refresh(0)'><i class="fa fa-refresh"></i></button>
+                </div>
+                <div class="panel-body">
+                    <!-- <canvas></canvas> -->
+                    <div :id="title+'_chart'"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12">
+            <div class="panel" id='count_doctor_by_month_day'>
+                <div class="panel-heading">
+                    Count Doctor by Day (2016-03)
+                    <button class="button button-borderless right" @click='refresh(0)'><i class="fa fa-refresh"></i></button>
+                </div>
+                <div class="panel-body">
+                    <!-- <canvas></canvas> -->
+                    <div :id="title+'_chart'"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12">
+            <div class="panel" id='count_doctor_by_year_offices'>
+                <div class="panel-heading">
+                    Count Doctor by Office (2016)
+                    <button class="button button-borderless right" @click='refresh(0)'><i class="fa fa-refresh"></i></button>
+                </div>
+                <div class="panel-body">
+                    <!-- <canvas></canvas> -->
+                    <div :id="title+'_chart'"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12">
+            <div class="panel" id='count_doctor_by_month_offices_scatter'>
+                <div class="panel-heading">
+                    Count Doctor by Month Office (2016)
+                    <button class="button button-borderless right" @click='refresh(0)'><i class="fa fa-refresh"></i></button>
+                </div>
+                <div class="panel-body">
+                    <!-- <canvas></canvas> -->
+                    <div :id="title+'_chart'"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12">
+            <div class="panel" id='count_doctor_by_year_titles_pie'>
+                <div class="panel-heading">
+                    Count Doctor by Title (2016)
+                    <button class="button button-borderless right" @click='refresh(0)'><i class="fa fa-refresh"></i></button>
+                </div>
+                <div class="panel-body">
+                    <!-- <canvas></canvas> -->
+                    <div :id="title+'_chart'"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12">
+            <div class="panel" id='count_doctor_by_month_titles'>
+                <div class="panel-heading">
+                    Count Doctor by Month Title (2016)
+                    <button class="button button-borderless right" @click='refresh(0)'><i class="fa fa-refresh"></i></button>
+                </div>
+                <div class="panel-body">
+                    <!-- <canvas></canvas> -->
+                    <div :id="title+'_chart'"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-header">
+        <h1>Bean Count<small>&emsp;demo</small></h1>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-4">
+            <div class="panel" id='count_bean'>
+                <div class="panel-heading" v-cloak>
+                    Count Bean (all)
+                    <button class="button button-borderless right" @click='refresh(0)'><i class="fa fa-refresh"></i></button>
+                </div>
+                <div class="panel-body">
+                    <!-- <canvas></canvas> -->
+                    <div :id="title+'_chart'"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-8">
+            <div class="panel" id='count_bean_by_year'>
+                <div class="panel-heading" v-cloak>
+                    Count Bean (2016)
+                    <button class="button button-borderless right" @click='refresh(0)'><i class="fa fa-refresh"></i></button>
+                </div>
+                <div class="panel-body">
+                    <!-- <canvas></canvas> -->
+                    <div :id="title+'_chart'"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12">
+            <div class="panel" id='count_bean_by_year_month'>
+                <div class="panel-heading" v-cloak>
+                    Count Bean by Month (2016)
+                    <button class="button button-borderless right" @click='refresh(0)'><i class="fa fa-refresh"></i></button>
+                </div>
+                <div class="panel-body">
+                    <!-- <canvas></canvas> -->
+                    <div :id="title+'_chart'"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12">
+            <div class="panel" id='count_bean_by_month_day'>
+                <div class="panel-heading" v-cloak>
+                    Count Bean by Day (2016-08)
+                    <button class="button button-borderless right" @click='refresh(0)'><i class="fa fa-refresh"></i></button>
+                </div>
+                <div class="panel-body">
+                    <!-- <canvas></canvas> -->
+                    <div :id="title+'_chart'"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<br>
+<br> {% endblock %} {% block js %}
+<script type="text/javascript" src="{{ url_for('static', filename='js/charts/doctor_count.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/charts/doctor_count_by_year_month.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/charts/doctor_count_by_month_day.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/charts/doctor_count_by_year_month_offices.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/charts/doctor_count_by_month_day_offices_scatter.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/charts/doctor_count_by_year_month_titles_pie.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/charts/doctor_count_by_month_day_titles.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/charts/count_bean.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/charts/count_bean_by_year.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/charts/count_bean_by_year_month.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/charts/count_bean_by_month_day.js') }}"></script>
+{% endblock %}
