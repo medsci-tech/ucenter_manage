@@ -7,17 +7,18 @@ var vm_count_user_by_year = new Vue({
             width: 'auto',
             height: 300
         },
-        get_url: 'year_users/',
+        get_url: 'year_user/',
         color: ['#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3'],
-        select: '2015',
+        select: '2016',
     },
     computed: {
         data: function() {
-            return JSON.parse(
-                this.get_data
-                .replace(/count/g, 'value')
-                .replace(/role/g, 'name')
-            );
+            return this.get_data.map(function(item) {
+                return {
+                    value: item.count,
+                    name: item.role
+                }
+            })
         },
         data_head: function() {
             var result = [];
@@ -94,14 +95,5 @@ var vm_count_user_by_year = new Vue({
     },
     compiled: function() {
         this.refresh(this.select);
-
-        // var vm = this;
-
-        // $.get(this.get_url, {}, function(data) {
-        //     vm.get_data = data;
-        //     // vm.get_data = '[{"role": "doctor", "count": 102}, {"role": "user", "count": 125}, {"role": "volunteer", "count": 78}, {"role": "enterprise", "count": 21}]';
-
-        //     vm.chart();
-        // });
     }
 });
