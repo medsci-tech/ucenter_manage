@@ -1,6 +1,7 @@
 import json
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.http import JsonResponse
 from utils_analyzer.user_analyzer import all_user
 from utils_analyzer.user_analyzer import year_user
 from utils_analyzer.user_analyzer import month_user
@@ -18,11 +19,8 @@ def index(request):
 
 def home_all_user(request):
     ret = all_user()
-    print(ret)
-    returnData = {'code': 200, 'data': json.dumps(ret)}
-
-    # response = HttpResponse(returnData, content_type="application/json")
-    return json.dumps(ret)
+    response = JsonResponse(ret, safe=False)
+    return response
 
 
 def home_year_user(request, year):
