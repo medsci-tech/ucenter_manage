@@ -14,7 +14,6 @@ from utils_analyzer.bean_analyzer import day_bean
 def index(request):
     ret = all_user()
     print(ret)
-
     return render(request, 'home.html', ret)
 
 
