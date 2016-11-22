@@ -16,7 +16,7 @@ def index(request):
     print('*' * 10)
     print(ret)
 
-    return HttpResponse('index')
+    return render(request, 'home.html', ret)
 
 
 def home_year_user(request, year):
