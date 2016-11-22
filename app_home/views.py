@@ -13,7 +13,6 @@ from utils_analyzer.bean_analyzer import day_bean
 # Create your views here.
 def index(request):
     ret = all_user()
-    print('*' * 10)
     print(ret)
 
     return render(request, 'home.html', ret)
