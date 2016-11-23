@@ -41,3 +41,11 @@ def check_code(request, phone, code):
         return JsonResponse({'error': 1, 'msg': 'check error'})
     request.session['user_phone'] = phone
     return HttpResponseRedirect('/home/')
+
+
+def logout(request, phone):
+    try:
+        del request.session['user_phone']
+    except:
+        pass
+    return HttpResponseRedirect('/')
