@@ -49,3 +49,4 @@ def logout(request, phone):
     except:
         pass
     return HttpResponseRedirect('/')
+
