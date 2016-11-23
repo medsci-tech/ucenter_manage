@@ -2,7 +2,7 @@ var vm_count_user_by_month_day = new Vue({
     el: '#count_user_by_month_day',
     data: {
         title: 'count_user_by_month_day',
-        get_url: 'day_users/2016/8',
+        get_url: 'day_user/2016/8',
         get_data: '',
         box_size: {
             width: 'auto',

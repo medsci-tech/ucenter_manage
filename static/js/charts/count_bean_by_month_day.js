@@ -2,7 +2,7 @@ var vm_count_bean_by_month_day = new Vue({
     el: '#count_bean_by_month_day',
     data: {
         title: 'count_bean_by_month_day',
-        get_url: 'day_beans/2016/8',
+        get_url: 'day_bean/2016/8',
         get_data: '',
         box_size: {
             width: 'auto',
@@ -13,11 +13,12 @@ var vm_count_bean_by_month_day = new Vue({
     },
     computed: {
         data: function() {
-            var data = JSON.parse(
-                this.get_data
-                .replace(/count/g, 'value')
-                .replace(/type/g, 'name')
-            );
+            var data = this.get_data.map(function(item) {
+                return {
+                    value: item.count,
+                    name: item.type
+                }
+            })
             var result = {
                 popularize: [],
                 consume: [],

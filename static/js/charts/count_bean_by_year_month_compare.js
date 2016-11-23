@@ -2,7 +2,7 @@ var vm_count_bean_by_year_month_compare = new Vue({
     el: '#count_bean_by_year_month_compare',
     data: {
         title: 'count_bean_by_year_month_compare',
-        get_url: 'month_beans/2016',
+        get_url: 'month_bean/2016',
         get_data: '',
         box_size: {
             width: 'auto',

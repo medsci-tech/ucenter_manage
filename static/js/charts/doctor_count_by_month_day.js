@@ -2,7 +2,7 @@ var vm_count_doctor_by_month_day = new Vue({
     el: '#count_doctor_by_month_day',
     data: {
         title: 'count_doctor_by_month_day',
-        get_url: 'day_doctors/2016/8',
+        get_url: 'day_doctor/2016/8',
         get_data: '',
         box_size: {
             width: 'auto',
