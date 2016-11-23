@@ -10,21 +10,16 @@ var vm_count_user_by_month_day = new Vue({
         },
         color: ['#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3']
     },
-    computed: {
+    computed: { 
         data: function() {
-            var data = this.get_data.map(function(item) {
-                return {
-                    value: item.count,
-                    name: item.role
-                }
-            })
+            var data = this.get_data;
             var result = {
                 doctor: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ],
                 user: [],
                 volunteer: [],
             };
             for (item in data) {
-                result[data[item].name][data[item].day - 1] = data[item].value
+                result[data[item].role][data[item].day - 1] = data[item].count
             }
             return result;
         },

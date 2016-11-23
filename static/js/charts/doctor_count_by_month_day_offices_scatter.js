@@ -7,27 +7,23 @@ var vm_count_doctor_by_month_offices_scatter = new Vue({
             width: 'auto',
             height: 500
         },
-        get_url: 'month_office/2016',
+        get_url: 'month_offices/2016',
         color: ['#c23531', '#00a0e9', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3'],
         data_head: ['未指定', '神经科', '其他科室', '内分泌科', '全科', '甲状腺外科', '老年科', '妇产科', '肾内科', '肿瘤科', '核医学科', '综合内科', '心血管科']
 
     },
     computed: {
         data: function() {
-            var data = JSON.parse(
-                this.get_data
-                .replace(/count/g, 'value')
-                .replace(/office/g, 'name')
-            );
+            var data = this.get_data;
 
 
             var filter_data = [];
 
             for (item in data) {
-                if (data[item].name == 'null') {
-                    data[item].name = '未指定';
+                if (data[item].office == 'null') {
+                    data[item].office = '未指定';
                 }
-                if (data[item].name != '内分泌科') {
+                if (data[item].office != '内分泌科') {
 
                     filter_data.push(data[item]);
                 }
@@ -35,30 +31,26 @@ var vm_count_doctor_by_month_offices_scatter = new Vue({
             }
 
             filter_data = filter_data.map(function(item) {
-                return [item.month, item.name, item.value];
+                return [item.month, item.office, item.count];
             });
 
             return filter_data;
         },
 
         data2: function() {
-            var data = JSON.parse(
-                this.get_data
-                .replace(/count/g, 'value')
-                .replace(/office/g, 'name')
-            );
+            var data = this.get_data;
 
 
             var filter_data = [];
 
             for (item in data) {
-                if (data[item].name == '内分泌科') {
+                if (data[item].office == '内分泌科') {
                     filter_data.push(data[item]);
                 }
             }
 
             filter_data = filter_data.map(function(item) {
-                return [item.month, item.name, item.value];
+                return [item.month, item.office, item.count];
             });
 
             return filter_data;

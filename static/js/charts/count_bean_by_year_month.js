@@ -13,12 +13,7 @@ var vm_count_bean_by_year_month = new Vue({
     },
     computed: {
         data: function() {
-            var data = this.get_data.map(function(item) {
-                return {
-                    value: item.count,
-                    name: item.type
-                }
-            })
+            var data = this.get_data;
             var result = {
                 popularize: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                 consume: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -26,7 +21,7 @@ var vm_count_bean_by_year_month = new Vue({
                 register: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
             };
             for (item in data) {
-                result[data[item].name][data[item].month - 1] = data[item].value
+                result[data[item].type][data[item].month - 1] = data[item].count
             }
             return result;
         },

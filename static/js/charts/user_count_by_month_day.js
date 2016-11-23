@@ -13,16 +13,13 @@ var vm_count_user_by_month_day = new Vue({
     },
     computed: {
         data: function() {
-            var data = JSON.parse(
-                this.get_data
-                .replace(/count/g, 'value')
-                .replace(/role/g, 'name')
-            );
+            var data = this.get_data;
+
             var result = {
                 user: [],
             };
             for (item in data) {
-                result[data[item].name][data[item].day - 1] = data[item].value
+                result[data[item].role][data[item].day - 1] = data[item].count
             }
             return result;
         },
@@ -76,7 +73,7 @@ var vm_count_user_by_month_day = new Vue({
                 }],
                 yAxis: [{
                     type: 'value',
-                    name: 'doctor'
+                    name: 'user'
                 }],
                 series: [{
                     type: 'bar',
