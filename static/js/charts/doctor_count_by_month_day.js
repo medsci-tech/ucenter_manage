@@ -13,11 +13,12 @@ var vm_count_doctor_by_month_day = new Vue({
     },
     computed: {
         data: function() {
-            var data = JSON.parse(
-                this.get_data
-                .replace(/count/g, 'value')
-                .replace(/role/g, 'name')
-            );
+            var data = this.get_data.map(function(item) {
+                return {
+                    value: item.count,
+                    name: item.role
+                }
+            })
             var result = {
                 doctor: [],
             };
@@ -49,7 +50,7 @@ var vm_count_doctor_by_month_day = new Vue({
                     right: '5%',
                     feature: {
                         magicType: {
-                            type: [ 'line','bar']
+                            type: ['line', 'bar']
                         },
                     }
                 },

@@ -105,13 +105,13 @@ var vm_count_user_by_month_day = new Vue({
 
         }
     },
- compiled: function() {
+    compiled: function() {
 
         var vm = this;
 
         $.get(this.get_url, {}, function(data) {
             vm.get_data = data;
-                    vm.chart();
+            vm.chart();
         });
     }
 });

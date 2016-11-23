@@ -14,11 +14,12 @@ var vm_count_doctor_by_month_offices = new Vue({
     },
     computed: {
         data: function() {
-            var data = JSON.parse(
-                this.get_data
-                .replace(/count/g, 'value')
-                .replace(/office/g, 'name')
-            );
+            var data = this.get_data.map(function(item) {
+                return {
+                    value: item.count,
+                    name: item.office
+                }
+            })
 
             var l = this.data_head.length;
             var result = {};
@@ -100,8 +101,8 @@ var vm_count_doctor_by_month_offices = new Vue({
                         },
                     }
                 },
-                legend: { 
-                    data: ['内分泌科'] 
+                legend: {
+                    data: ['内分泌科']
                 },
                 grid: {
                     left: '3%',

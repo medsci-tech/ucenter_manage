@@ -14,11 +14,11 @@ var vm_count_bean_by_year_month = new Vue({
     computed: {
         data: function() {
             var data = this.get_data.map(function(item) {
-                    return {
-                        value: item.count,
-                        name: item.type
-                    }
-                })
+                return {
+                    value: item.count,
+                    name: item.type
+                }
+            })
             var result = {
                 popularize: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                 consume: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
