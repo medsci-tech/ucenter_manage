@@ -9,10 +9,10 @@ var vm_count_bean_by_year = new Vue({
         },
         get_url: 'year_bean/2016',
         color: ['#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3']
-    },  
+    },
     computed: {
         data: function() {
-              return this.get_data.map(function(item) {
+            return this.get_data.map(function(item) {
                 return {
                     value: item.count,
                     name: item.type
