@@ -27,8 +27,10 @@ var vm_count_user_by_year = new Vue({
             }
             return result;
         },
-        change_select: function() {
-            this.refresh(this.select);
+    },
+    watch: {
+        'select': function() {
+            this.refresh();
         },
     },
     methods: {
@@ -85,7 +87,7 @@ var vm_count_user_by_year = new Vue({
         refresh: function(e) {
             var vm = this;
 
-            $.get(vm.get_url + e, {}, function(data) {
+            $.get(vm.get_url + this.select, {}, function(data) {
                 vm.get_data = data;
                 vm.chart();
             });
