@@ -28,7 +28,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Login</div>
                     <div class="panel-body">
-                        <form class="form-horizontal" action="/">
+                        <form class="form-horizontal" action="./">
                             <div class="form-group">
                                 <label for="phone" class="col-md-4 control-label">phone</label>
                                 <div class="col-md-6">
@@ -39,7 +39,7 @@
                                 <label for="code" class="col-md-4 control-label">code</label>
                                 <div class="col-md-6">
                                     <div class="input-group">
-                                        <input class="form-control" type="text" placeholder="enter code" v-model="code">
+                                        <input class="form-control" type="text" id="code" name="code" placeholder="enter code" v-model="code">
                                         <div class="input-group-btn">
                                             <button class="btn btn-default" type="button" @click="get_code($event)">点击获取验证码</button>
                                         </div>
