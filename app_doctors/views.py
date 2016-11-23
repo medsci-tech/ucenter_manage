@@ -11,7 +11,7 @@ from utils_analyzer.user_keywords_analyzer import key_month_user
 
 
 # Create your views here.
-def index(request, year):
+def index(request):
     return render(request, 'doctors.html')
 
 

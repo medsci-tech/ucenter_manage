@@ -12,7 +12,6 @@ def index(request):
         return render(request, 'login.html')
     phone = request.POST.get('phone')
     code = request.POST.get('code')
-
     print('phone is {phone}, code is {code}'.format(phone=phone, code=code))
 
     ret = check_user(phone, code)

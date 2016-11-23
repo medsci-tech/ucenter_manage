@@ -9,7 +9,7 @@ from utils_analyzer.bean_analyzer import day_bean
 
 
 # Create your views here.
-def index(request, year):
+def index(request):
     return render(request, 'users.html')
 
 
