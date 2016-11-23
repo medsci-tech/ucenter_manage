@@ -4,9 +4,12 @@ from django.http import HttpResponseRedirect
 from utils_common.message_sender import send_message
 from utils_common.message_sender import update_user
 from utils_common.message_sender import check_user
+# csrf
+from django.views.decorators.csrf import csrf_exempt
 
 
 # Create your views here.
+@csrf_exempt
 def index(request):
     if request.method == 'GET':
         return render(request, 'login.html')
