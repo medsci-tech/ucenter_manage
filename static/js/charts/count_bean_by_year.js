@@ -12,11 +12,12 @@ var vm_count_bean_by_year = new Vue({
     },  
     computed: {
         data: function() {
-            return JSON.parse(
-                this.get_data
-                .replace(/count/g, 'value')
-                .replace(/type/g, 'name')
-            );
+              return this.get_data.map(function(item) {
+                return {
+                    value: item.count,
+                    name: item.type
+                }
+            })
         },
         data_head: function() {
             var result = [];

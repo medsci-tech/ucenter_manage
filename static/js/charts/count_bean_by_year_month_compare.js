@@ -13,11 +13,12 @@ var vm_count_bean_by_year_month_compare = new Vue({
     },
     computed: {
         data: function() {
-            var data = JSON.parse(
-                this.get_data
-                .replace(/count/g, 'value')
-                .replace(/type/g, 'name')
-            );
+            var data = this.get_data.map(function(item) {
+                return {
+                    value: item.count,
+                    name: item.type
+                }
+            })
             var result = {
                 popularize: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                 consume: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
