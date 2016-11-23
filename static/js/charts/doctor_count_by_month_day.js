@@ -2,7 +2,7 @@ var vm_count_doctor_by_month_day = new Vue({
     el: '#count_doctor_by_month_day',
     data: {
         title: 'count_doctor_by_month_day',
-        get_url: 'day_doctor/2016/8',
+        get_url: 'day_user/2016/8',
         get_data: '',
         box_size: {
             width: 'auto',
@@ -13,17 +13,12 @@ var vm_count_doctor_by_month_day = new Vue({
     },
     computed: {
         data: function() {
-            var data = this.get_data.map(function(item) {
-                return {
-                    value: item.count,
-                    name: item.role
-                }
-            })
+            var data = this.get_data;
             var result = {
                 doctor: [],
             };
             for (item in data) {
-                result[data[item].name][data[item].day - 1] = data[item].value
+                result[data[item].role][data[item].day - 1] = data[item].count
             }
             return result;
         },

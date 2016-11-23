@@ -9,20 +9,16 @@ var vm_count_user_by_year_month = new Vue({
         },
         get_url: 'month_user/2016',
         color: ['#00a0e9', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3'],
-        data_head: ['doctor'],
+        data_head: ['user'],
     },
     computed: {
         data: function() {
-            var data = JSON.parse(
-                this.get_data
-                .replace(/count/g, 'value')
-                .replace(/role/g, 'name')
-            );
+            var data = this.get_data;
             var result = {
-                doctor: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                user: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             };
             for (item in data) {
-                result[data[item].name][data[item].month - 1] = data[item].value
+                result[data[item].role][data[item].month - 1] = data[item].count
             }
             return result;
         },
@@ -80,7 +76,7 @@ var vm_count_user_by_year_month = new Vue({
                 }],
                 yAxis: [{
                     type: 'value',
-                    name: 'people'
+                    name: 'user'
                 }],
                 series: [{
                     type: 'line',
@@ -114,13 +110,13 @@ var vm_count_user_by_year_month = new Vue({
 
         var vm = this;
 
-        vm.get_data = '[{"role": "doctor", "count": 2, "month": 5}, {"role": "doctor", "count": 12, "month": 8}, {"role": "doctor", "count": 32, "month": 7}, {"role": "doctor", "count": 1, "month": 6}, {"role": "doctor", "count": 6, "month": 4}, {"role": "doctor", "count": 49, "month": 3}]';
-        vm.chart();
+        // vm.get_data = '[{"role": "user", "count": 2, "month": 5}, {"role": "user", "count": 12, "month": 8}, {"role": "user", "count": 32, "month": 7}, {"role": "user", "count": 1, "month": 6}, {"role": "user", "count": 6, "month": 4}, {"role": "user", "count": 49, "month": 3}]';
+        // vm.chart();
 
-        // $.get(this.get_url, {}, function(data) {
-        //     vm.get_data = data;
-        //     vm.chart();
-        // });
+        $.get(this.get_url, {}, function(data) {
+            vm.get_data = data;
+            vm.chart();
+        });
     }
 
 });

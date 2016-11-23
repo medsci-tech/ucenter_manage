@@ -13,11 +13,12 @@ var vm_character_count_month_beans = new Vue({
     },
     computed: {
         data: function() {
-            var data = JSON.parse(
-                this.get_data
-                .replace(/count/g, 'value')
-                .replace(/role/g, 'name')
-            );
+            var data = this.get_data.map(function(item) {
+                return {
+                    value: item.count,
+                    name: item.name
+                }
+            })
             var result = {
                 character: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             };

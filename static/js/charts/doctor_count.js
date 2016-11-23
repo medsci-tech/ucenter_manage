@@ -7,7 +7,7 @@ var vm_count_doctor = new Vue({
             width: 'auto',
             height: 250
         },
-        get_url: 'year_doctor/2016',
+        get_url: 'year_user/2016',
         color: ['#00a0e9', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3']
     },
     computed: {
