@@ -19,7 +19,6 @@ def index(request):
     if not ret:
         return JsonResponse({'error': 1, 'msg': 'check error'})
     request.session['user_phone'] = phone
-
     return HttpResponseRedirect('/home/')
 
 
