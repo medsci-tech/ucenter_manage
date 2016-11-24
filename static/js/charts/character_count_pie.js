@@ -12,11 +12,12 @@ var vm_character_count_pie = new Vue({
     },
     computed: {
         data: function() {
-            return JSON.parse(
-                this.get_data
-                .replace(/count/g, 'value')
-                .replace(/role/g, 'name')
-            );
+             return this.get_data.map(function(item) {
+                return {
+                    value: item.count,
+                    name: item.role
+                }
+            })
         },
         data_head: function() {
             var result = [];

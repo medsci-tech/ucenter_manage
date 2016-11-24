@@ -2,7 +2,7 @@ var vm_count_bean_by_month_day = new Vue({
     el: '#count_bean_by_month_day',
     data: {
         title: 'count_bean_by_month_day',
-        get_url: 'day_bean/2016/8',
+        get_url: 'day_bean/',
         get_data: '',
         box_size: {
             width: 'auto',
@@ -10,23 +10,20 @@ var vm_count_bean_by_month_day = new Vue({
         },
         color: ['#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3'],
         data_head: ['popularize', 'consume', 'article_learn', 'register'],
+        select_year: now_year,
+        select_month: now_month,
     },
     computed: {
         data: function() {
-            var data = this.get_data.map(function(item) {
-                return {
-                    value: item.count,
-                    name: item.type
-                }
-            })
+            var data = this.get_data;
             var result = {
-                popularize: [],
+                popularize: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
                 consume: [],
                 article_learn: [],
                 register: []
             };
             for (item in data) {
-                result[data[item].name][data[item].day - 1] = data[item].value
+                result[data[item].type][data[item].day - 1] = data[item].count
             }
             return result;
         },
@@ -36,6 +33,14 @@ var vm_count_bean_by_month_day = new Vue({
                 result.push(i);
             }
             return result;
+        }
+    },
+    watch: {
+        'select_yaer': function() {
+            this.refresh();
+        },
+        'select_month': function() {
+            this.refresh();
         }
     },
     methods: {
@@ -112,28 +117,14 @@ var vm_count_bean_by_month_day = new Vue({
         },
         refresh: function(e) {
             var vm = this;
-            if (e == 0) {
-                $.get(vm.get_url, {}, function(data) {
-                    vm.get_data = data;
-                    vm.chart();
-                });
-            } else {
-                $.get(e, {}, function(data) {
-                    vm.get_data = data;
-                    vm.chart();
-                });
-            }
-
+            $.get(vm.get_url + vm.select_year + '/' + vm.select_month, {}, function(data) {
+                vm.get_data = data;
+                vm.chart();
+            });
         }
     },
     compiled: function() {
-
-        var vm = this;
-
-        $.get(this.get_url, {}, function(data) {
-            vm.get_data = data;
-            vm.chart();
-        });
+        this.refresh();
     }
 
 });

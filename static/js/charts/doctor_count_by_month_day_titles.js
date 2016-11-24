@@ -7,17 +7,13 @@ var vm_count_doctor_by_month_titles = new Vue({
             width: 'auto',
             height: 400
         },
-        get_url: 'month_title/2016',
+        get_url: 'month_titles/2016',
         color: ['#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3'],
        data_head: ['主治医师', '主任医师', '住院医师', '副主任医师', '1']
     },
     computed: {
         data: function() {
-            var data = JSON.parse(
-                this.get_data
-                .replace(/count/g, 'value')
-                .replace(/title/g, 'name')
-            );
+            var data = this.get_data;
 
             var l = this.data_head.length;
             var result = {};
@@ -26,7 +22,7 @@ var vm_count_doctor_by_month_titles = new Vue({
             }
             for (item in data) {
 
-                result[data[item].name][data[item].month - 1] = data[item].value
+                result[data[item].title][data[item].month - 1] = data[item].count
             }
             return result;
         },

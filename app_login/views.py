@@ -1,11 +1,10 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.http import HttpResponseRedirect
+from django.views.decorators.csrf import csrf_exempt
 from utils_common.message_sender import send_message
 from utils_common.message_sender import update_user
 from utils_common.message_sender import check_user
-# csrf
-from django.views.decorators.csrf import csrf_exempt
 
 
 # Create your views here.
@@ -42,3 +41,12 @@ def check_code(request, phone, code):
         return JsonResponse({'error': 1, 'msg': 'check error'})
     request.session['user_phone'] = phone
     return HttpResponseRedirect('/home/')
+
+
+def logout(request, phone):
+    try:
+        del request.session['user_phone']
+    except:
+        pass
+    return HttpResponseRedirect('/')
+

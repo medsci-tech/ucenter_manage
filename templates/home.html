@@ -23,8 +23,7 @@
                 <div class="panel-heading">
                     Count User
                     <select class="form-control" v-model="select">
-                        <option value="2016">2016</option>
-                        <option value="2015">2015</option>
+                       <option v-for="i in [2016]" value="[[i]]" v-text="i"></option>
                     </select>
                     <button class="button button-borderless right" @click='refresh(select)'><i class="fa fa-refresh"></i></button>
                 </div>
@@ -39,8 +38,7 @@
                 <div class="panel-heading">
                     Count User by Month
                     <select class="form-control" v-model="select">
-                        <option value="2016">2016</option>
-                        <option value="2015">2015</option>
+                       <option v-for="i in [2016]" value="[[i]]" v-text="i"></option>
                     </select>
                     <button class="button button-borderless right" @click='refresh(select)'><i class="fa fa-refresh"></i></button>
                 </div>
@@ -55,12 +53,10 @@
                 <div class="panel-heading">
                     Count User by Day
                     <select class="form-control" v-model="select_year">
-                        <option value="2016">2016</option>
-                        <option value="2015">2015</option>
+                        <option v-for="i in [2016]" value="[[i]]" v-text="i"></option>
                     </select>
                     <select class="form-control" v-model="select_month">
-                        <option value="2016">2016</option>
-                        <option value="2015">2015</option>
+                        <option v-for="i in 12" value="[[i+1]]" v-text="i+1"></option>
                     </select>
                     <button class="button button-borderless right" @click='refresh(0)'><i class="fa fa-refresh"></i></button>
                 </div>
@@ -91,7 +87,10 @@
         <div class="col-sm-12 col-md-8">
             <div class="panel" id='count_bean_by_year'>
                 <div class="panel-heading">
-                    Count Bean (2016)
+                    Count Bean 
+                    <select class="form-control" v-model="select">
+                       <option v-for="i in [2016]" value="[[i]]" v-text="i"></option>
+                    </select>
                     <button class="button button-borderless right" @click='refresh(0)'><i class="fa fa-refresh"></i></button>
                 </div>
                 <div class="panel-body">
@@ -103,7 +102,10 @@
         <div class="col-sm-12 col-md-12">
             <div class="panel" id='count_bean_by_year_month_compare'>
                 <div class="panel-heading">
-                    Compare Count Bean by Month (2016)
+                    Compare Count Bean by Month 
+                    <select class="form-control" v-model="select">
+                        <option v-for="i in [2016]" value="[[i]]" v-text="i"></option>
+                    </select>
                     <button class="button button-borderless right" @click='refresh(0)'><i class="fa fa-refresh"></i></button>
                 </div>
                 <div class="panel-body">
@@ -115,7 +117,13 @@
         <div class="col-sm-12 col-md-12">
             <div class="panel" id='count_bean_by_month_day'>
                 <div class="panel-heading">
-                    Count Bean by Day (2016-08)
+                    Count Bean by Day 
+                    <select class="form-control" v-model="select_year">
+                        <option v-for="i in [2016]" value="[[i]]" v-text="i"></option>
+                    </select>
+                    <select class="form-control" v-model="select_month">
+                        <option v-for="i in 12" value="[[i+1]]" v-text="i+1"></option>
+                    </select>
                     <button class="button button-borderless right" @click='refresh(0)'><i class="fa fa-refresh"></i></button>
                 </div>
                 <div class="panel-body">

@@ -5,5 +5,6 @@ from . import views
 urlpatterns = [
     url(r'^$', views.index),
     url(r'^get_code/(?P<phone>((13[0-9]{1})|(15[0-9]{1})|(17[0-9]{1})|(18[0-9]{1}))+\d{8})/$', views.get_code),
+    url(r'^logout/(?P<phone>((13[0-9]{1})|(15[0-9]{1})|(17[0-9]{1})|(18[0-9]{1}))+\d{8})/$', views.logout),
     url(r'^check_code/(?P<phone>[0-9]+)/(?P<code>[A-Za-z0-9]{6})$', views.check_code)
 ]

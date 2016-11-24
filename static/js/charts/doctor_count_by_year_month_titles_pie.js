@@ -7,17 +7,17 @@ var vm_count_doctor_by_year_titles_pie = new Vue({
             width: 'auto',
             height: 300
         },
-        get_url: 'year_title/2016',
+        get_url: 'year_titles/2016',
         color: ['#00a0e9', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3', '#6e7074', '#546570', '#c4ccd3']
     },
     computed: {
         data: function() {
-            var data = JSON.parse(
-                this.get_data
-                .replace(/count/g, 'value')
-                .replace(/title/g, 'name')
-            );
-
+            var data = this.get_data.map(function(item) {
+                return {
+                    value: item.count,
+                    name: item.title
+                }
+            })
             data.sort(function(a, b) {
                 return b.value - a.value;
             })
