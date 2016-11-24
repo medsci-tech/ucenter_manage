@@ -9,11 +9,11 @@ var vm_count_user_by_month_day = new Vue({
             height: 400
         },
         color: ['#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3'],
-        data_head: ['doctor', 'user', 'volunteer'],
-        select_year: '2016',
-        select_month: '9'
+        data_head: ['volunteer', 'doctor', 'user', ],
+        select_year: now_year,
+        select_month: now_month
     },
-    computed: { 
+    computed: {
         data: function() {
             var data = this.get_data;
             var result = {
@@ -34,14 +34,14 @@ var vm_count_user_by_month_day = new Vue({
             return result;
         },
         change_select: function() {
-            this.refresh(this.select_year+ this.select_month);
+            this.refresh(this.select_year + this.select_month);
         },
     },
     watch: {
-        'select_year': function(){
+        'select_year': function() {
             this.refresh();
-        },        
-        'select_month': function(){
+        },
+        'select_month': function() {
             this.refresh();
         },
     },
@@ -100,10 +100,10 @@ var vm_count_user_by_month_day = new Vue({
         refresh: function() {
             var vm = this;
 
-                $.get(vm.get_url + this.select_year + '/' + this.select_month, {}, function(data) {
-                    vm.get_data = data;
-                    vm.chart();
-                })
+            $.get(vm.get_url + this.select_year + '/' + this.select_month, {}, function(data) {
+                vm.get_data = data;
+                vm.chart();
+            })
 
         }
     },

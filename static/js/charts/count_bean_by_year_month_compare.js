@@ -2,7 +2,7 @@ var vm_count_bean_by_year_month_compare = new Vue({
     el: '#count_bean_by_year_month_compare',
     data: {
         title: 'count_bean_by_year_month_compare',
-        get_url: 'month_bean/2016',
+        get_url: 'month_bean/',
         get_data: '',
         box_size: {
             width: 'auto',
@@ -10,6 +10,7 @@ var vm_count_bean_by_year_month_compare = new Vue({
         },
         color: ['#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3'],
         data_head: ['popularize', 'consume', 'article_learn', 'register'],
+        select: '2016'
     },
     computed: {
         data: function() {
@@ -31,6 +32,11 @@ var vm_count_bean_by_year_month_compare = new Vue({
                 result.push(i);
             }
             return result;
+        }
+    },
+    watch: {
+        'select': function() {
+            this.refresh();
         }
     },
     methods: {
@@ -145,28 +151,14 @@ var vm_count_bean_by_year_month_compare = new Vue({
         },
         refresh: function(e) {
             var vm = this;
-            if (e == 0) {
-                $.get(vm.get_url, {}, function(data) {
-                    vm.get_data = data;
-                    vm.chart();
-                });
-            } else {
-                $.get(e, {}, function(data) {
-                    vm.get_data = data;
-                    vm.chart();
-                });
-            }
-
+            $.get(vm.get_url + vm.select, {}, function(data) {
+                vm.get_data = data;
+                vm.chart();
+            });
         }
     },
     compiled: function() {
-
-        var vm = this;
-
-        $.get(this.get_url, {}, function(data) {
-            vm.get_data = data;
-            vm.chart();
-        });
+        this.refresh();
     }
 
 });
