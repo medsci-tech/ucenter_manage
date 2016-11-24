@@ -6,6 +6,8 @@ from utils_analyzer.user_analyzer import day_user
 from utils_analyzer.bean_analyzer import year_bean
 from utils_analyzer.bean_analyzer import month_bean
 from utils_analyzer.bean_analyzer import day_bean
+from utils_analyzer.user_list import user_list
+
 from utils_common.auth_wrapper import auth_wrapper
 
 
@@ -14,6 +16,12 @@ from utils_common.auth_wrapper import auth_wrapper
 def index(request):
     return render(request, 'users.html')
 
+@auth_wrapper
+def list(request):
+    ret = user_list()
+    return render(request, 'user_list.html',{
+        'object_list': ret
+    })
 
 @auth_wrapper
 def users_year_user(request, year):
