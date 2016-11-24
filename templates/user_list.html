@@ -1,0 +1,26 @@
+{% extends 'layouts/base.html' %}
+{% block content %}
+
+<div class="container" style="margin-top: 50px;">
+  <table>
+  <thead>
+  <tr>
+    <th>手机号</th>
+    <th>角色</th>
+    <th>迈豆</th>
+    <th>创建时间</th>
+  </tr>
+  </thead>
+  <tbody>
+  {% for data in object_list %}
+  <tr>
+    <td>{{ data.phone }}</td>
+    <td>{{ data.role }}</td>
+    <td>{{ data.total_beans }}</td>
+    <td>{{ data.create_time}}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+  </table>
+</div>
+{% endblock %}
