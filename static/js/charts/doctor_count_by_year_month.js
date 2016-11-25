@@ -60,7 +60,7 @@ var vm_count_doctor_by_year_month = new Vue({
                 // },
                 grid: {
                     top: '10%',
-                    left: '6%',
+                    left: '2%',
                     right: '8%',
                     bottom: '3%',
                     containLabel: true

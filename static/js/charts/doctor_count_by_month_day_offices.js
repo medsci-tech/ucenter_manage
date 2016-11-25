@@ -56,6 +56,7 @@ var vm_count_doctor_by_month_offices = new Vue({
                         areaStyle: { normal: {} },
                         smooth: true,
                         symbol: 'none',
+                        
                     })
                 } else {
                     series.push({

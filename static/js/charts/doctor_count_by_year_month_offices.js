@@ -8,7 +8,6 @@ var vm_count_doctor_by_year_offices = new Vue({
             height: 400
         },
         get_url: 'year_offices/2016',
-        color: ['#00a0e9', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3', '#6e7074', '#546570', '#c4ccd3']
     },
     computed: {
         data: function() {
@@ -31,11 +30,21 @@ var vm_count_doctor_by_year_offices = new Vue({
                     this.data[item].name = '未指定'
                 }
                 result.push(this.data[item].name);
-                this.data[item].itemStyle = {
-                    normal: {
-                         color: color[item],
+
+                if (this.data[item].name == '内分泌科') {
+                    this.data[item].itemStyle = {
+                        normal: {
+                            color: color[0],
+                        }
+                    }
+                } else {
+                    this.data[item].itemStyle = {
+                        normal: {
+                            color: color[1],
+                        }
                     }
                 }
+
 
             }
             return result;
@@ -46,6 +55,7 @@ var vm_count_doctor_by_year_offices = new Vue({
             $('#' + this.title + '_chart').height(this.box_size.height);
 
             var option = {
+                color: color,
                 // title: {
                 //     text: 'Count Bean (2016)',
                 //     subtext: '',
@@ -73,7 +83,7 @@ var vm_count_doctor_by_year_offices = new Vue({
                     inverse: true
                 }],
                 xAxis: [{
-                    name: 'people',
+                    name: 'people(log)',
                     type: 'log',
                     // logBase: 2,
                     position: 'top',
