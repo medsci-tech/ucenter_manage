@@ -121,11 +121,17 @@ var vm_count_doctor_by_month_offices_scatter = new Vue({
                         show: true,
                     },
                     data: this.xAxis_data,
+                    nameTextStyle: {
+                        fontWeight: 'bold'
+                    }
                 }],
                 yAxis: [{
                     type: 'category',
                     name: 'office',
                     data: this.data_head,
+                    nameTextStyle: {
+                        fontWeight: 'bold'
+                    }
                 }],
                 series: series
             };

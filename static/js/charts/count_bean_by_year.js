@@ -58,20 +58,26 @@ var vm_count_bean_by_year = new Vue({
                 // },
                 grid: {
                     left: '3%',
-                    right: '6%',
+                    right: '8%',
                     top: '3%',
                     containLabel: true
                 },
                 xAxis: [{
                     type: 'value',
                     position: 'top',
-                    name: 'bean'
+                    name: 'bean',
+                    nameTextStyle: {
+                        fontWeight: 'bold'
+                    }
                 }],
                 yAxis: [{
                     name: 'category',
                     type: 'category',
                     data: this.data_head,
-                    inverse: true
+                    inverse: true,
+                    nameTextStyle: {
+                        fontWeight: 'bold'
+                    }
                 }],
                 // label: {
                 //     normal: {

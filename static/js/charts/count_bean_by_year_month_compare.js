@@ -87,7 +87,10 @@ var vm_count_bean_by_year_month_compare = new Vue({
                     boundaryGap: false,
                     axisLine: { onZero: true },
                     data: this.xAxis_data,
-                    name: 'month'
+                    name: 'month',
+                    nameTextStyle: {
+                        fontWeight: 'bold'
+                    }
                 }, {
                     gridIndex: 1,
                     type: 'category',
@@ -95,16 +98,25 @@ var vm_count_bean_by_year_month_compare = new Vue({
                     axisLine: { onZero: true },
                     data: this.xAxis_data,
                     position: 'top',
-                    name: 'month'
+                    name: 'month',
+                    nameTextStyle: {
+                        fontWeight: 'bold'
+                    }
                 }],
                 yAxis: [{
                     type: 'value',
-                    name: 'bean'
+                    name: 'bean',
+                    nameTextStyle: {
+                        fontWeight: 'bold'
+                    }
                 }, {
                     gridIndex: 1,
                     type: 'value',
                     inverse: true,
-                    name: 'bean'
+                    name: 'bean',
+                    nameTextStyle: {
+                        fontWeight: 'bold'
+                    }
                 }],
                 series: [{
                     type: 'line',

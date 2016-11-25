@@ -13,7 +13,7 @@ var vm_count_doctor_by_year_offices = new Vue({
         data: function() {
             var data = this.get_data.map(function(item) {
                 return {
-                    value: item.count,
+                    value: item.count,  
                     name: item.office
                 }
             })
@@ -80,7 +80,10 @@ var vm_count_doctor_by_year_offices = new Vue({
                     type: 'category',
                     containLabel: true,
                     data: this.data_head,
-                    inverse: true
+                    inverse: true,
+                    nameTextStyle: {
+                        fontWeight: 'bold'
+                    }
                 }],
                 xAxis: [{
                     name: 'people(log)',
@@ -89,6 +92,9 @@ var vm_count_doctor_by_year_offices = new Vue({
                     position: 'top',
                     minInterval: 1,
                     // show: false,
+                    nameTextStyle: {
+                        fontWeight: 'bold'
+                    }
                 }],
                 label: {
                     normal: {

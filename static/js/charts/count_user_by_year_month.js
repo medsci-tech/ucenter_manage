@@ -8,7 +8,7 @@ var vm_count_user_by_year_month = new Vue({
             height: 400
         },
         get_url: 'month_user/',
- 
+
         data_head: ['doctor', 'user', 'volunteer'],
         select: now_year,
 
@@ -50,11 +50,14 @@ var vm_count_user_by_year_month = new Vue({
                     type: 'bar',
                     name: item,
                     data: vm.data[item],
+                    areaStyle: { normal: {} },
+                    smooth: true,
+                    symbol: 'none',
                 }
             });
 
             var option = {
-                 color: color,
+                color: color,
 
                 // title: {
                 //     text: this.title,
@@ -71,7 +74,7 @@ var vm_count_user_by_year_month = new Vue({
                     right: '5%',
                     feature: {
                         magicType: {
-                            type: ['line', 'bar']
+                            type: ['bar', 'line', 'tiled', 'stack']
                         },
                     }
                 },
@@ -88,13 +91,20 @@ var vm_count_user_by_year_month = new Vue({
                     type: 'category',
                     // boundaryGap: false,
                     data: this.xAxis_data,
-                    name: 'month'
+                    name: 'month',
+                    nameTextStyle: {
+                        fontWeight: 'bold'
+                    }
                 }],
                 yAxis: [{
                     type: 'value',
-                    name: 'people'
+                    name: 'people',
+                    nameTextStyle: {
+                        fontWeight: 'bold'
+                    }
                 }],
                 series: series,
+
             };
             var chart = echarts.init(document.getElementById(this.title + '_chart'));
             chart.setOption(option);

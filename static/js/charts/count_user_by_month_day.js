@@ -65,6 +65,15 @@ var vm_count_user_by_month_day = new Vue({
                 //     text: this.title,
                 //     subtext: '',
                 // },
+                toolbox: {
+                    top: '0%',
+                    right: '5%',
+                    feature: {
+                        magicType: {
+                            type: ['line', 'bar', 'stack', 'tiled']
+                        },
+                    }
+                },
                 tooltip: {
                     trigger: 'axis',
                     // axisPointer: { // 坐标轴指示器，坐标轴触发有效
@@ -84,11 +93,17 @@ var vm_count_user_by_month_day = new Vue({
                     type: 'category',
                     boundaryGap: false,
                     data: this.xAxis_data,
-                    name: 'day'
+                    name: 'day',
+                    nameTextStyle: {
+                        fontWeight: 'bold'
+                    }
                 }],
                 yAxis: [{
                     type: 'value',
-                    name: 'people'
+                    name: 'people',
+                    nameTextStyle: {
+                        fontWeight: 'bold'
+                    }
                 }],
                 series: series,
             };

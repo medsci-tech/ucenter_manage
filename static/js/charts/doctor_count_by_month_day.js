@@ -76,10 +76,16 @@ var vm_count_doctor_by_month_day = new Vue({
                     name: 'day',
                     // boundaryGap: false,
                     data: this.xAxis_data,
+                    nameTextStyle: {
+                        fontWeight: 'bold'
+                    }
                 }],
                 yAxis: [{
                     type: 'value',
-                    name: 'doctor'
+                    name: 'doctor',
+                    nameTextStyle: {
+                        fontWeight: 'bold'
+                    }
                 }],
                 series: [{
                     type: 'bar',

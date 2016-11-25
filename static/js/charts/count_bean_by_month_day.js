@@ -53,6 +53,15 @@ var vm_count_bean_by_month_day = new Vue({
                 //     text: this.title,
                 //     subtext: '',
                 // },
+                toolbox: {
+                    top: '0%',
+                    right: '5%',
+                    feature: {
+                        magicType: {
+                            type: ['bar', 'line', 'tiled', 'stack']
+                        },
+                    }
+                },
                 tooltip: {
                     trigger: 'axis',
                     axisPointer: { // 坐标轴指示器，坐标轴触发有效
@@ -73,10 +82,16 @@ var vm_count_bean_by_month_day = new Vue({
                     name: 'day',
                     // boundaryGap: false,
                     data: this.xAxis_data,
+                    nameTextStyle: {
+                        fontWeight: 'bold'
+                    }
                 }],
                 yAxis: [{
                     type: 'value',
-                    name: 'bean'
+                    name: 'bean',
+                    nameTextStyle: {
+                        fontWeight: 'bold'
+                    }
                 }],
                 series: [{
                     type: 'bar',
@@ -84,32 +99,32 @@ var vm_count_bean_by_month_day = new Vue({
                     data: this.data[this.data_head[0]],
                     stack: 'all',
                     areaStyle: { normal: {} },
-                    // smooth: true,
-                    // symbol: 'none',
+                    smooth: true,
+                    symbol: 'none',
                 }, {
                     type: 'bar',
                     name: this.data_head[1],
                     data: this.data[this.data_head[1]],
                     stack: 'all',
                     areaStyle: { normal: {} },
-                    // smooth: true,
-                    // symbol: 'none',
+                    smooth: true,
+                    symbol: 'none',
                 }, {
                     type: 'bar',
                     name: this.data_head[2],
                     data: this.data[this.data_head[2]],
                     stack: 'all',
                     areaStyle: { normal: {} },
-                    // smooth: true,
-                    // symbol: 'none',
+                    smooth: true,
+                    symbol: 'none',
                 }, {
                     type: 'bar',
                     name: this.data_head[3],
                     data: this.data[this.data_head[3]],
                     stack: 'all',
                     areaStyle: { normal: {} },
-                    // smooth: true,
-                    // symbol: 'none',
+                    smooth: true,
+                    symbol: 'none',
                 }, ]
             };
             var chart = echarts.init(document.getElementById(this.title + '_chart'));

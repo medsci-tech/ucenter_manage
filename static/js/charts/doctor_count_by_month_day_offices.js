@@ -56,7 +56,7 @@ var vm_count_doctor_by_month_offices = new Vue({
                         areaStyle: { normal: {} },
                         smooth: true,
                         symbol: 'none',
-                        
+
                     })
                 } else {
                     series.push({
@@ -114,10 +114,16 @@ var vm_count_doctor_by_month_offices = new Vue({
                         show: true,
                     },
                     data: this.xAxis_data,
+                    nameTextStyle: {
+                        fontWeight: 'bold'
+                    }
                 }],
                 yAxis: [{
                     type: 'value',
-                    name: 'people'
+                    name: 'people',
+                    nameTextStyle: {
+                        fontWeight: 'bold'
+                    }
                 }],
                 series: series
             };

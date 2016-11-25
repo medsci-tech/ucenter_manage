@@ -43,6 +43,15 @@ var vm_count_bean_by_year_month = new Vue({
                 //     text: this.title,
                 //     subtext: '',
                 // },
+                toolbox: {
+                    top: '0%',
+                    right: '5%',
+                    feature: {
+                        magicType: {
+                            type: ['line', 'bar', 'stack', 'tiled']
+                        },
+                    }
+                },
                 tooltip: {
                     trigger: 'axis',
                     // axisPointer: { // 坐标轴指示器，坐标轴触发有效
@@ -66,10 +75,16 @@ var vm_count_bean_by_year_month = new Vue({
                         show: true,
                     },
                     data: this.xAxis_data,
+                    nameTextStyle: {
+                        fontWeight: 'bold'
+                    }
                 }],
                 yAxis: [{
                     type: 'value',
-                    name: 'bean'
+                    name: 'bean',
+                    nameTextStyle: {
+                        fontWeight: 'bold'
+                    }
                 }],
                 series: [{
                     type: 'line',

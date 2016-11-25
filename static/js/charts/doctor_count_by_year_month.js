@@ -73,10 +73,16 @@ var vm_count_doctor_by_year_month = new Vue({
                         show: true,
                     },
                     data: this.xAxis_data,
+                    nameTextStyle: {
+                        fontWeight: 'bold'
+                    }
                 }],
                 yAxis: [{
                     type: 'value',
-                    name: 'people'
+                    name: 'people',
+                    nameTextStyle: {
+                        fontWeight: 'bold'
+                    }
                 }],
                 series: [{
                     type: 'line',

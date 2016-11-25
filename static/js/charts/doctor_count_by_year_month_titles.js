@@ -67,7 +67,10 @@ var vm_count_doctor_by_year_titles = new Vue({
                     type: 'category',
                     containLabel: true,
                     data: this.data_head,
-                    inverse: true
+                    inverse: true,
+                    nameTextStyle: {
+                        fontWeight: 'bold'
+                    }
                 }],
                 xAxis: [{
                     name: 'people',
@@ -76,6 +79,9 @@ var vm_count_doctor_by_year_titles = new Vue({
                     position: 'top',
                     // minInterval: 1,
                     // show: false,
+                    nameTextStyle: {
+                        fontWeight: 'bold'
+                    }
                 }],
                 label: {
                     normal: {

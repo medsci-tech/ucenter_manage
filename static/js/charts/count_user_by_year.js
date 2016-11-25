@@ -50,8 +50,8 @@ var vm_count_user_by_year = new Vue({
                     y: 'bottom',
                     data: this.data_head
                 },
-                toolbox: {
-                    show: true,
+                // toolbox: {
+                //     show: true,
                     // feature: {
                     //     mark: { show: true },
                     //     dataView: { show: true, readOnly: false },
@@ -62,7 +62,7 @@ var vm_count_user_by_year = new Vue({
                     //     restore: { show: true },
                     //     saveAsImage: { show: true }
                     // }
-                },
+                // },
                 calculable: true,
                 series: [{
                     // name: '面积模式',

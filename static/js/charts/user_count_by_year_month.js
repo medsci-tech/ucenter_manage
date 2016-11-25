@@ -73,10 +73,16 @@ var vm_count_user_by_year_month = new Vue({
                         show: true,
                     },
                     data: this.xAxis_data,
+                    nameTextStyle: {
+                        fontWeight: 'bold'
+                    }
                 }],
                 yAxis: [{
                     type: 'value',
-                    name: 'user'
+                    name: 'user',
+                    nameTextStyle: {
+                        fontWeight: 'bold'
+                    }
                 }],
                 series: [{
                     type: 'line',
