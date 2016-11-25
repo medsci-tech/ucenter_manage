@@ -89,7 +89,7 @@ var vm_count_doctor_by_month_titles = new Vue({
                 xAxis: [{
                     type: 'category',
                     name: 'month',
-                    boundaryGap: false,
+                    // boundaryGap: false,
                     splitLine: {
                         show: true,
                     },

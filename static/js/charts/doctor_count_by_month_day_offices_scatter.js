@@ -72,7 +72,7 @@ var vm_count_doctor_by_month_offices_scatter = new Vue({
                 name: '内分泌科',
                 type: 'effectScatter',
                 symbolSize: function(val) {
-                    return Math.log(val[2] * 1000);
+                    return Math.log2(val[2] * 100);
                 },
                 data: this.data2,
                 animationDelay: function(idx) {
@@ -82,7 +82,7 @@ var vm_count_doctor_by_month_offices_scatter = new Vue({
                 name: '非内分泌科',
                 type: 'scatter',
                 symbolSize: function(val) {
-                    return Math.log(val[2] * 1000);
+                    return Math.log2(val[2] * 100);
                 },
                 data: this.data,
                 animationDelay: function(idx) {
