@@ -18,7 +18,7 @@ var vm_count_user_by_month_day = new Vue({
             var data = this.get_data;
 
             var result = {
-                user: [,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,],
+                user: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ],
             };
             for (item in data) {
                 result[data[item].role][data[item].day - 1] = data[item].count

@@ -17,7 +17,7 @@ var vm_count_doctor_by_month_day = new Vue({
         data: function() {
             var data = this.get_data;
             var result = {
-                doctor: [,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,],
+                doctor: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ],
             };
             for (item in data) {
                 result[data[item].role][data[item].day - 1] = data[item].count
