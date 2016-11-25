@@ -8,9 +8,9 @@ var vm_count_user_by_year_month = new Vue({
             height: 400
         },
         get_url: 'month_user/',
-        color: ['#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3'],
-        data_head: ['volunteer', 'doctor', 'user'],
-        select: '2016',
+ 
+        data_head: ['doctor', 'user', 'volunteer'],
+        select: now_year,
 
     },
     computed: {
@@ -54,6 +54,8 @@ var vm_count_user_by_year_month = new Vue({
             });
 
             var option = {
+                 color: color,
+
                 // title: {
                 //     text: this.title,
                 //     subtext: '',
@@ -97,14 +99,6 @@ var vm_count_user_by_year_month = new Vue({
             var chart = echarts.init(document.getElementById(this.title + '_chart'));
             chart.setOption(option);
 
-            chart.on('click', function(params) {
-                console.log(params);
-            })
-
-            chart.getZr().on('click', function(e) {
-                console.log(e);
-                console.log(123123);
-            })
         },
         refresh: function(e) {
             var vm = this;

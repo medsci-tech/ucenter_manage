@@ -8,7 +8,7 @@ var vm_character_count_pie = new Vue({
             height: 300
         },
         get_url: 'year_character/' + phone + '/2016',
-        color: ['#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3']
+         
     },
     computed: {
         data: function() {

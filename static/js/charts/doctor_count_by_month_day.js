@@ -8,7 +8,7 @@ var vm_count_doctor_by_month_day = new Vue({
             width: 'auto',
             height: 400
         },
-        color: ['#00a0e9', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3'],
+ 
         data_head: ['doctor'],
         select_year: now_year,
         select_month: now_month,
@@ -17,7 +17,7 @@ var vm_count_doctor_by_month_day = new Vue({
         data: function() {
             var data = this.get_data;
             var result = {
-                doctor: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ],
+                doctor: [,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,],
             };
             for (item in data) {
                 result[data[item].role][data[item].day - 1] = data[item].count
@@ -42,7 +42,7 @@ var vm_count_doctor_by_month_day = new Vue({
             $('#' + this.title + '_chart').height(this.box_size.height);
 
             var option = {
-                color: this.color,
+                 color: color,
                 // title: {
                 //     text: this.title,
                 //     subtext: '',

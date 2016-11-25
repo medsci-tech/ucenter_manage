@@ -40,7 +40,7 @@ var vm_count_doctor_by_year_titles_pie = new Vue({
                 //     text: 'Count Bean (2016)',
                 //     subtext: '',
                 // },
-                color: this.color,
+                 color: color,
                 tooltip: {
                     trigger: 'item',
                     formatter: "{b} : {c} ({d}%)"

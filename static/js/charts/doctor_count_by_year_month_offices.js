@@ -33,7 +33,7 @@ var vm_count_doctor_by_year_offices = new Vue({
                 result.push(this.data[item].name);
                 this.data[item].itemStyle = {
                     normal: {
-                        color: this.color[item],
+                         color: color[item],
                     }
                 }
 

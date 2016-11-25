@@ -94,7 +94,7 @@ var vm_count_doctor_by_month_offices_scatter = new Vue({
 
 
             var option = {
-                color: this.color,
+                 color: color,
                 // title: {
                 //     text: this.title,
                 //     subtext: '',

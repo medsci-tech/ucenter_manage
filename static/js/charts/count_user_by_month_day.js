@@ -8,8 +8,8 @@ var vm_count_user_by_month_day = new Vue({
             width: 'auto',
             height: 400
         },
-        color: ['#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3'],
-        data_head: ['volunteer', 'doctor', 'user', ],
+        data_head: ['doctor', 'user','volunteer',],
+ 
         select_year: now_year,
         select_month: now_month
     },
@@ -17,9 +17,9 @@ var vm_count_user_by_month_day = new Vue({
         data: function() {
             var data = this.get_data;
             var result = {
-                doctor: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ],
+                volunteer: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ],
+                doctor: [],
                 user: [],
-                volunteer: [],
             };
             for (item in data) {
                 result[data[item].role][data[item].day - 1] = data[item].count
@@ -49,8 +49,18 @@ var vm_count_user_by_month_day = new Vue({
         chart: function() {
             $('#' + this.title + '_chart').height(this.box_size.height);
 
+            var vm = this;
+
+            var series = vm.data_head.map(function(item, index) {
+                return {
+                    type: 'line',
+                    name: item,
+                    data: vm.data[item],
+                }
+            });
+
             var option = {
-                color: this.color,
+                 color: color,
                 // title: {
                 //     text: this.title,
                 //     subtext: '',
@@ -80,19 +90,7 @@ var vm_count_user_by_month_day = new Vue({
                     type: 'value',
                     name: 'people'
                 }],
-                series: [{
-                    type: 'line',
-                    name: 'doctor',
-                    data: this.data.doctor,
-                }, {
-                    type: 'line',
-                    name: 'user',
-                    data: this.data.user,
-                }, {
-                    type: 'line',
-                    name: 'volunteer',
-                    data: this.data.volunteer,
-                }]
+                series: series,
             };
             var chart = echarts.init(document.getElementById(this.title + '_chart'));
             chart.setOption(option);

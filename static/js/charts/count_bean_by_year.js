@@ -8,8 +8,8 @@ var vm_count_bean_by_year = new Vue({
             height: 300
         },
         get_url: 'year_bean/',
-        color: ['#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3'],
-        select: '2016',
+ 
+        select: now_year,
     },
     computed: {
         data: function() {
@@ -26,7 +26,7 @@ var vm_count_bean_by_year = new Vue({
                 result.push(this.data[item].name);
                 this.data[item].itemStyle = {
                     normal: {
-                        color: this.color[item],
+                         color: color[item],
                     }
                 }
             }
