@@ -7,8 +7,9 @@ var vm_count_bean_by_year = new Vue({
             width: 'auto',
             height: 300
         },
-        get_url: 'year_bean/2016',
-        color: ['#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3']
+        get_url: 'year_bean/',
+ 
+        select: now_year,
     },
     computed: {
         data: function() {
@@ -25,12 +26,17 @@ var vm_count_bean_by_year = new Vue({
                 result.push(this.data[item].name);
                 this.data[item].itemStyle = {
                     normal: {
-                        color: this.color[item],
+                         color: color[item],
                     }
                 }
             }
             return result;
         },
+    },
+    watch: {
+        'select': function() {
+            this.refresh();
+        }
     },
     methods: {
         chart: function() {
@@ -52,20 +58,26 @@ var vm_count_bean_by_year = new Vue({
                 // },
                 grid: {
                     left: '3%',
-                    right: '6%',
+                    right: '8%',
                     top: '3%',
                     containLabel: true
                 },
                 xAxis: [{
                     type: 'value',
                     position: 'top',
-                    name: 'bean'
+                    name: 'bean',
+                    nameTextStyle: {
+                        fontWeight: 'bold'
+                    }
                 }],
                 yAxis: [{
                     name: 'category',
                     type: 'category',
                     data: this.data_head,
-                    inverse: true
+                    inverse: true,
+                    nameTextStyle: {
+                        fontWeight: 'bold'
+                    }
                 }],
                 // label: {
                 //     normal: {
@@ -93,28 +105,15 @@ var vm_count_bean_by_year = new Vue({
         },
         refresh: function(e) {
             var vm = this;
-            if (e == 0) {
-                $.get(vm.get_url, {}, function(data) {
-                    vm.get_data = data;
-                    vm.chart();
-                });
-            } else {
-                $.get(e, {}, function(data) {
-                    vm.get_data = data;
-                    vm.chart();
-                });
-            }
-
+            $.get(vm.get_url + this.select, {}, function(data) {
+                vm.get_data = data;
+                vm.chart();
+            });
         }
     },
     compiled: function() {
 
-        var vm = this;
-
-        $.get(this.get_url, {}, function(data) {
-            vm.get_data = data;
-            vm.chart();
-        });
+       this.refresh();
     }
 
 

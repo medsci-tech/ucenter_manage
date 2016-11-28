@@ -2,20 +2,22 @@ var vm_count_bean_by_month_day = new Vue({
     el: '#count_bean_by_month_day',
     data: {
         title: 'count_bean_by_month_day',
-        get_url: 'day_bean/2016/8',
+        get_url: 'day_bean/',
         get_data: '',
         box_size: {
             width: 'auto',
             height: 400
         },
-        color: ['#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3'],
+ 
         data_head: ['popularize', 'consume', 'article_learn', 'register'],
+        select_year: now_year,
+        select_month: now_month,
     },
     computed: {
         data: function() {
             var data = this.get_data;
             var result = {
-                popularize: [],
+                popularize: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
                 consume: [],
                 article_learn: [],
                 register: []
@@ -33,16 +35,33 @@ var vm_count_bean_by_month_day = new Vue({
             return result;
         }
     },
+    watch: {
+        'select_yaer': function() {
+            this.refresh();
+        },
+        'select_month': function() {
+            this.refresh();
+        }
+    },
     methods: {
         chart: function() {
             $('#' + this.title + '_chart').height(this.box_size.height);
 
             var option = {
-                color: this.color,
+                 color: color,
                 // title: {
                 //     text: this.title,
                 //     subtext: '',
                 // },
+                toolbox: {
+                    top: '0%',
+                    right: '5%',
+                    feature: {
+                        magicType: {
+                            type: ['bar', 'line', 'tiled', 'stack']
+                        },
+                    }
+                },
                 tooltip: {
                     trigger: 'axis',
                     axisPointer: { // 坐标轴指示器，坐标轴触发有效
@@ -63,10 +82,16 @@ var vm_count_bean_by_month_day = new Vue({
                     name: 'day',
                     // boundaryGap: false,
                     data: this.xAxis_data,
+                    nameTextStyle: {
+                        fontWeight: 'bold'
+                    }
                 }],
                 yAxis: [{
                     type: 'value',
-                    name: 'bean'
+                    name: 'bean',
+                    nameTextStyle: {
+                        fontWeight: 'bold'
+                    }
                 }],
                 series: [{
                     type: 'bar',
@@ -74,32 +99,32 @@ var vm_count_bean_by_month_day = new Vue({
                     data: this.data[this.data_head[0]],
                     stack: 'all',
                     areaStyle: { normal: {} },
-                    // smooth: true,
-                    // symbol: 'none',
+                    smooth: true,
+                    symbol: 'none',
                 }, {
                     type: 'bar',
                     name: this.data_head[1],
                     data: this.data[this.data_head[1]],
                     stack: 'all',
                     areaStyle: { normal: {} },
-                    // smooth: true,
-                    // symbol: 'none',
+                    smooth: true,
+                    symbol: 'none',
                 }, {
                     type: 'bar',
                     name: this.data_head[2],
                     data: this.data[this.data_head[2]],
                     stack: 'all',
                     areaStyle: { normal: {} },
-                    // smooth: true,
-                    // symbol: 'none',
+                    smooth: true,
+                    symbol: 'none',
                 }, {
                     type: 'bar',
                     name: this.data_head[3],
                     data: this.data[this.data_head[3]],
                     stack: 'all',
                     areaStyle: { normal: {} },
-                    // smooth: true,
-                    // symbol: 'none',
+                    smooth: true,
+                    symbol: 'none',
                 }, ]
             };
             var chart = echarts.init(document.getElementById(this.title + '_chart'));
@@ -107,28 +132,14 @@ var vm_count_bean_by_month_day = new Vue({
         },
         refresh: function(e) {
             var vm = this;
-            if (e == 0) {
-                $.get(vm.get_url, {}, function(data) {
-                    vm.get_data = data;
-                    vm.chart();
-                });
-            } else {
-                $.get(e, {}, function(data) {
-                    vm.get_data = data;
-                    vm.chart();
-                });
-            }
-
+            $.get(vm.get_url + vm.select_year + '/' + vm.select_month, {}, function(data) {
+                vm.get_data = data;
+                vm.chart();
+            });
         }
     },
     compiled: function() {
-
-        var vm = this;
-
-        $.get(this.get_url, {}, function(data) {
-            vm.get_data = data;
-            vm.chart();
-        });
+        this.refresh();
     }
 
 });

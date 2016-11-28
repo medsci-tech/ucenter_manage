@@ -27,7 +27,7 @@ var vm_count_doctor_by_month_offices_scatter = new Vue({
 
                     filter_data.push(data[item]);
                 }
-              
+
             }
 
             filter_data = filter_data.map(function(item) {
@@ -69,22 +69,22 @@ var vm_count_doctor_by_month_offices_scatter = new Vue({
             $('#' + this.title + '_chart').height(this.box_size.height);
 
             var series = [{
-                name: '非内分泌科',
-                type: 'scatter',
+                name: '内分泌科',
+                type: 'effectScatter',
                 symbolSize: function(val) {
-                    return Math.log(val[2]*1000);
+                    return Math.log2(val[2] * 100);
                 },
-                data: this.data,
+                data: this.data2,
                 animationDelay: function(idx) {
                     return idx * 5;
                 }
             }, {
-                name: '内分泌科',
-                type: 'effectScatter',
+                name: '非内分泌科',
+                type: 'scatter',
                 symbolSize: function(val) {
-                    return Math.log(val[2]*1000);
+                    return Math.log2(val[2] * 100);
                 },
-                data: this.data2,
+                data: this.data,
                 animationDelay: function(idx) {
                     return idx * 5;
                 }
@@ -94,7 +94,7 @@ var vm_count_doctor_by_month_offices_scatter = new Vue({
 
 
             var option = {
-                color: this.color,
+                color: color,
                 // title: {
                 //     text: this.title,
                 //     subtext: '',
@@ -121,11 +121,17 @@ var vm_count_doctor_by_month_offices_scatter = new Vue({
                         show: true,
                     },
                     data: this.xAxis_data,
+                    nameTextStyle: {
+                        fontWeight: 'bold'
+                    }
                 }],
                 yAxis: [{
                     type: 'category',
                     name: 'office',
                     data: this.data_head,
+                    nameTextStyle: {
+                        fontWeight: 'bold'
+                    }
                 }],
                 series: series
             };

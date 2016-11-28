@@ -8,7 +8,7 @@ var vm_count_doctor_by_month_offices = new Vue({
             height: 500
         },
         get_url: 'month_offices/2016',
-        color: ['#00a0e9', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3', '#6e7074', '#546570', '#c4ccd3'],
+         
         data_head: ['内分泌科', '未指定', '神经科', '其他科室', '全科', '甲状腺外科', '老年科', '妇产科', '肾内科', '肿瘤科', '核医学科', '综合内科', '心血管科']
 
     },
@@ -56,6 +56,7 @@ var vm_count_doctor_by_month_offices = new Vue({
                         areaStyle: { normal: {} },
                         smooth: true,
                         symbol: 'none',
+
                     })
                 } else {
                     series.push({
@@ -76,7 +77,7 @@ var vm_count_doctor_by_month_offices = new Vue({
 
 
             var option = {
-                color: this.color,
+                 color: color,
                 // title: {
                 //     text: this.title,
                 //     subtext: '',
@@ -113,10 +114,16 @@ var vm_count_doctor_by_month_offices = new Vue({
                         show: true,
                     },
                     data: this.xAxis_data,
+                    nameTextStyle: {
+                        fontWeight: 'bold'
+                    }
                 }],
                 yAxis: [{
                     type: 'value',
-                    name: 'people'
+                    name: 'people',
+                    nameTextStyle: {
+                        fontWeight: 'bold'
+                    }
                 }],
                 series: series
             };

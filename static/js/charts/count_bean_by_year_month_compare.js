@@ -2,14 +2,15 @@ var vm_count_bean_by_year_month_compare = new Vue({
     el: '#count_bean_by_year_month_compare',
     data: {
         title: 'count_bean_by_year_month_compare',
-        get_url: 'month_bean/2016',
+        get_url: 'month_bean/',
         get_data: '',
         box_size: {
             width: 'auto',
             height: 600
         },
-        color: ['#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3'],
+ 
         data_head: ['popularize', 'consume', 'article_learn', 'register'],
+        select: now_year
     },
     computed: {
         data: function() {
@@ -33,12 +34,17 @@ var vm_count_bean_by_year_month_compare = new Vue({
             return result;
         }
     },
+    watch: {
+        'select': function() {
+            this.refresh();
+        }
+    },
     methods: {
         chart: function() {
             $('#' + this.title + '_chart').height(this.box_size.height);
 
             var option = {
-                color: this.color,
+                 color: color,
                 // title: {
                 //     text: this.title,
                 //     subtext: '',
@@ -81,7 +87,10 @@ var vm_count_bean_by_year_month_compare = new Vue({
                     boundaryGap: false,
                     axisLine: { onZero: true },
                     data: this.xAxis_data,
-                    name: 'month'
+                    name: 'month',
+                    nameTextStyle: {
+                        fontWeight: 'bold'
+                    }
                 }, {
                     gridIndex: 1,
                     type: 'category',
@@ -89,16 +98,25 @@ var vm_count_bean_by_year_month_compare = new Vue({
                     axisLine: { onZero: true },
                     data: this.xAxis_data,
                     position: 'top',
-                    name: 'month'
+                    name: 'month',
+                    nameTextStyle: {
+                        fontWeight: 'bold'
+                    }
                 }],
                 yAxis: [{
                     type: 'value',
-                    name: 'bean'
+                    name: 'bean',
+                    nameTextStyle: {
+                        fontWeight: 'bold'
+                    }
                 }, {
                     gridIndex: 1,
                     type: 'value',
                     inverse: true,
-                    name: 'bean'
+                    name: 'bean',
+                    nameTextStyle: {
+                        fontWeight: 'bold'
+                    }
                 }],
                 series: [{
                     type: 'line',
@@ -145,28 +163,14 @@ var vm_count_bean_by_year_month_compare = new Vue({
         },
         refresh: function(e) {
             var vm = this;
-            if (e == 0) {
-                $.get(vm.get_url, {}, function(data) {
-                    vm.get_data = data;
-                    vm.chart();
-                });
-            } else {
-                $.get(e, {}, function(data) {
-                    vm.get_data = data;
-                    vm.chart();
-                });
-            }
-
+            $.get(vm.get_url + vm.select, {}, function(data) {
+                vm.get_data = data;
+                vm.chart();
+            });
         }
     },
     compiled: function() {
-
-        var vm = this;
-
-        $.get(this.get_url, {}, function(data) {
-            vm.get_data = data;
-            vm.chart();
-        });
+        this.refresh();
     }
 
 });

@@ -8,27 +8,27 @@ var vm_count_user_by_year = new Vue({
             height: 300
         },
         get_url: 'year_user/',
-        color: ['#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3'],
-        select: '2016',
+
+        select: now_year,
+        data_head: ['doctor', 'user', 'volunteer'],
     },
     computed: {
         data: function() {
-            return this.get_data.map(function(item) {
-                return {
-                    value: item.count,
-                    name: item.role
-                }
-            })
-        },
-        data_head: function() {
             var result = [];
-            for (item in this.data) {
-                result.push(this.data[item].name);
+
+            for (i in this.get_data) {
+                result[this.data_head.indexOf(this.get_data[i].role)] = {
+                    name: this.get_data[i].role,
+                    value: this.get_data[i].count,
+                }
             }
+
             return result;
         },
-        change_select: function() {
-            this.refresh(this.select);
+    },
+    watch: {
+        'select': function() {
+            this.refresh();
         },
     },
     methods: {
@@ -36,6 +36,7 @@ var vm_count_user_by_year = new Vue({
             $('#' + this.title + '_chart').height(this.box_size.height);
 
             var option = {
+                color: color,
                 // title: {
                 //     text: '*Count Bean (2016)',
                 //     subtext: '',
@@ -49,8 +50,8 @@ var vm_count_user_by_year = new Vue({
                     y: 'bottom',
                     data: this.data_head
                 },
-                toolbox: {
-                    show: true,
+                // toolbox: {
+                //     show: true,
                     // feature: {
                     //     mark: { show: true },
                     //     dataView: { show: true, readOnly: false },
@@ -61,7 +62,7 @@ var vm_count_user_by_year = new Vue({
                     //     restore: { show: true },
                     //     saveAsImage: { show: true }
                     // }
-                },
+                // },
                 calculable: true,
                 series: [{
                     // name: '面积模式',
@@ -85,7 +86,7 @@ var vm_count_user_by_year = new Vue({
         refresh: function(e) {
             var vm = this;
 
-            $.get(vm.get_url + e, {}, function(data) {
+            $.get(vm.get_url + this.select, {}, function(data) {
                 vm.get_data = data;
                 vm.chart();
             });
