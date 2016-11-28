@@ -10,6 +10,7 @@ class User(Document):
     name = StringField(max_length=10)
     phone = StringField(required=True, max_length=11)
     role = StringField(required=True)
+    role = StringField(required=True)
     total_beans = IntField(default=0)
 
     province = StringField()
