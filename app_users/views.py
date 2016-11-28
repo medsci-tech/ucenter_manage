@@ -7,11 +7,12 @@ from utils_analyzer.user_analyzer import day_user
 from utils_analyzer.bean_analyzer import year_bean
 from utils_analyzer.bean_analyzer import month_bean
 from utils_analyzer.bean_analyzer import day_bean
-from utils_analyzer.user_list import user_list
+from utils_analyzer.user_list import *
 
 from utils_common.auth_wrapper import auth_wrapper
-from utils_common.django_excel import excel_export
-
+from utils_common.django_excel import *
+import xlwt
+from models import User
 
 # Create your views here.
 @auth_wrapper
@@ -20,7 +21,9 @@ def index(request):
 
 @auth_wrapper
 def list(request):
-    ret = user_list()
+    post = request.POST
+
+    ret = form_user_list()
     return render(request, 'user_list.html',{
         'object_list': ret
     })
@@ -69,15 +72,18 @@ def users_day_bean(request, year, month):
 
 @auth_wrapper
 def user_export(request):
-    datas = []
-    users = user_list()
-    for user in users:
-        data = [
-            user['phone'],
-            user['role'],
-            user['total_beans'],
-            user['create_time'],
-        ]
-        datas.append(data)
-    excel = excel_export('20161127', datas)
-    return HttpResponse(excel)
+    columns = [
+        '手机号',
+        '角色',
+        '迈豆数',
+        '注册时间',
+    ]
+    post = request.POST
+    # 查询结果
+    rows = export_user_list(**post)
+
+    response = import_response('2016')
+    excel = excel_export(columns, rows)
+    excel.save(response)
+    # excel = export(request)
+    return response
