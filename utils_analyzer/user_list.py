@@ -37,5 +37,9 @@ def form_user_list(res_params=None):
 
 def export_user_list(res_params=None):
     params = _user_list(res_params)
-    ret = User.objects.filter(**params).values_list('phone', 'role', 'total_beans', 'create_time')
+    print(params)
+    if not params:
+        ret = User.objects.all()
+        return list(ret)
+    ret = User.objects(__raw__=params).only('phone', 'role', 'total_beans', 'create_time')
     return list(ret)
