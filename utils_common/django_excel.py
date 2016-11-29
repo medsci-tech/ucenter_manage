@@ -15,7 +15,7 @@ def excel_export(columns, rows):
     # response['Content-Disposition'] = 'attachment; filename="users.xls"'
 
     wb = xlwt.Workbook(encoding='utf-8')
-    ws = wb.add_sheet('Users')
+    ws = wb.add_sheet('Sheet1')
 
     # Sheet header, first row
     row_num = 0

@@ -9,7 +9,7 @@ urlpatterns = [
     url(r'^year_bean/(?P<year>\d{4})/$', views.users_year_bean),
     url(r'^month_bean/(?P<year>\d{4})/$', views.users_month_bean),
     url(r'^day_bean/(?P<year>\d{4})/(?P<month>[1-9]|1[0-2])/$', views.users_day_bean),
-    url(r'^list/', views.list),
+    url(r'^list/', views.list, name='user_list'),
     url(r'^export/', views.user_export),
     # url(r'^export2/', views.export),
 ]

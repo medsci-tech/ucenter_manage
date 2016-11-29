@@ -11,22 +11,27 @@ from utils_analyzer.user_list import *
 
 from utils_common.auth_wrapper import auth_wrapper
 from utils_common.django_excel import *
-import xlwt
-from models import User
+from utils_common.pagination import paginationForMime
 
 # Create your views here.
 @auth_wrapper
 def index(request):
     return render(request, 'users.html')
 
+
 @auth_wrapper
 def list(request):
-    post = request.POST
+    req = request.GET
+    # return HttpResponse(req)
+    data = form_user_list(req)
+    page = request.GET.get('page', 1)  # 获取页码
+    pageData = paginationForMime(page=page, data=data)
 
-    ret = form_user_list()
-    return render(request, 'user_list.html',{
-        'object_list': ret
+    return render(request, 'user_list.html', {
+        'pageData': pageData,
+        'reqList': req,
     })
+
 
 @auth_wrapper
 def users_year_user(request, year):
@@ -85,5 +90,4 @@ def user_export(request):
     response = import_response('2016')
     excel = excel_export(columns, rows)
     excel.save(response)
-    # excel = export(request)
     return response
