@@ -1,5 +1,5 @@
 {% extends 'layouts/base.html' %} {% block css %}
-<link rel="stylesheet" href="css/charts.css"> {% endblock %}{% block content %}
+<link rel="stylesheet" href="/static/css/charts.css"> {% endblock %}{% block content %}
 <div class="container" style="margin-top: 50px;">
     <!-- user_count -->
     <div class="page-header">
@@ -17,8 +17,8 @@
                     <tbody>
                         <template v-for="(key, value) in data">
                             <tr v-if="is_show(value)">
-                                <th class="text-right">{{'{{ key }}'}}</th>
-                                <td>{{'{{ value }}'}}</td>
+                                <th class="text-right">[[key]]</th>
+                                <td>[[value]]</td>
                             </tr>
                         </template>
                     </tbody>
@@ -123,16 +123,14 @@
 <br>
 <br> {% endblock %} {% block js %}
 <script>
-var data = {{ data | safe }};
-var phone = window.location.pathname.split('/');
-phone = phone[phone.length-1];
+
 </script>
-<script type="text/javascript" src="js/charts/character_info.js"></script>
-<script type="text/javascript" src="js/charts/character_count_radar.js"></script>
-<script type="text/javascript" src="js/charts/character_count_pie.js"></script>
-<script type="text/javascript" src="js/charts/character_count_year_beans.js"></script>
-<script type="text/javascript" src="js/charts/character_count_month_beans.js"></script>
-<script type="text/javascript" src="js/charts/character_timeline.js"></script>
-<script type="text/javascript" src="js/charts/character_relation.js"></script>
-<script type="text/javascript" src="js/charts/character_project_beans.js"></script>
+<script type="text/javascript" src="/static/js/charts/character_info.js"></script>
+<script type="text/javascript" src="/static/js/charts/character_count_radar.js"></script>
+<script type="text/javascript" src="/static/js/charts/character_count_pie.js"></script>
+<script type="text/javascript" src="/static/js/charts/character_count_year_beans.js"></script>
+<script type="text/javascript" src="/static/js/charts/character_count_month_beans.js"></script>
+<script type="text/javascript" src="/static/js/charts/character_timeline.js"></script>
+<script type="text/javascript" src="/static/js/charts/character_relation.js"></script>
+<script type="text/javascript" src="/static/js/charts/character_project_beans.js"></script>
 {% endblock %}

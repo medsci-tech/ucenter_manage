@@ -1,5 +1,6 @@
 click==6.6
 Django==1.10
+django-excel==0.0.5
 et-xmlfile==1.0.1
 Flask==0.11.1
 itsdangerous==0.24
@@ -14,8 +15,11 @@ pyexcel-io==0.2.4
 pyexcel-webio==0.0.8
 pyexcel-xlsx==0.2.3
 pymongo==3.3.1
+python-dateutil==2.6.0
 PyYAML==3.12
 requests==2.11.1
 simplejson==3.10.0
+six==1.10.0
 texttable==0.8.7
 Werkzeug==0.11.11
+xlwt==1.1.2
