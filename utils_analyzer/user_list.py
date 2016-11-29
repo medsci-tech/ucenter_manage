@@ -1,34 +1,37 @@
 from models import User
 import datetime
-# from django.http import HttpResponse
-# import dateutil.parser
+from mongoengine import Q
 
 
 def _user_list(res_params):
     phone = res_params.get('phone')
+    role = res_params.get('role')
     start_time = res_params.get('start_time')
     end_time = res_params.get('end_time')
-    role = res_params.get('role')
-    params = {}
+
+    params = dict()
     if phone:
-        params = {
-            'phone': phone
-        }
+        params['phone'] = phone
     elif role or start_time or end_time:
         if role:
-            params.update(role=role)
+            params['role'] = role
         if start_time:
-            params.update(create_time={'$gt': datetime.datetime.strptime(start_time, '%Y-%m-%d').isoformat()})
-            # params.update(create_time={'$gt': dateutil.parser.parse(start_time)})
+            start_time_obj = datetime.datetime.strptime(start_time, '%Y-%m-%d')
+            params['create_time'] = {'$gte': start_time_obj}
         if end_time:
-            params.update(create_time={'$lt': (datetime.datetime.strptime(end_time, '%Y-%m-%d') + datetime.timedelta(days=1)).isoformat()})
+            end_time_obj = datetime.datetime.strptime(end_time, '%Y-%m-%d')
+            params['create_time']['$lte'] = end_time_obj
     return params
 
 
 def form_user_list(res_params=None):
     params = _user_list(res_params)
-    # return params
-    ret = User.objects.filter(**params).order_by('id')
+    print(params)
+    if not params:
+        ret = User.objects.all()
+        return list(ret)
+    ret = User.objects(__raw__=params).order_by('id')
+    print(ret)
     return list(ret)
 
 
