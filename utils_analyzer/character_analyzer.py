@@ -99,3 +99,8 @@ def user_project_beans(phone, project):
     return list(ret)
 
 
+def user_bean_list(phone, page):
+    page = int(page)
+    ret = Bean.objects(Q(user_phone=phone)).order_by('id')[(page-1)*20:page*20]
+    print(list(ret))
+    return list(ret)
