@@ -7,7 +7,9 @@ var vm_character_bean_list = new Vue({
             width: 'auto',
             height: 250
         },
-        get_url: 'info/',
+        page: 0,
+        page_count: 100,
+        get_url: 'bean_list/',
     },
     methods: {
         is_show: function(e) {
@@ -19,15 +21,32 @@ var vm_character_bean_list = new Vue({
         refresh: function(e) {
             var vm = this;
 
-            $.get(this.get_url, {}, function(data) {
+            $.get(this.get_url + vm.page, {}, function(data) {
                 vm.data = data;
             });
+        },
+        choose_page: function(i) {
+            var vm = this;
+            if (i < 0) { i = 0 };
+            if (i > vm.page_count) { i = vm.page_count - 1 };
+            $.get(vm.get_url + i, {}, function(data) {
+                if (data) {
+                    var data = JSON.parse(data);
+                    vm.page = i;
+                    vm.page_count = data.page_count
+                    vm.data = JSON.parse(data.page_data);
+                }
+            })
         }
     },
-});
+    compiled: function() {
 
-$('#bean_list_btn').on('click',function(){
-    vm_character_bean_list.refresh();
-    $('#character_bean_list').modal('show');
-});
+        var vm = this;
 
+        $.get(vm.get_url + vm.page, {}, function(data) {
+            vm.data = data;
+        });
+
+    }
+
+}); 
