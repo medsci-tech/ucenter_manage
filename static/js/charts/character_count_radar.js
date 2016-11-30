@@ -7,13 +7,13 @@ var vm_character_count_radar = new Vue({
             width: 'auto',
             height: 300
         },
-        get_url: 'year_character/' + phone + '/2016',
- 
+        get_url: 'year_character/2016',
+
         data_head: ['popularize', 'consume', 'article_learn', 'register']
     },
     computed: {
         data: function() {
-             return this.get_data.map(function(item) {
+            return this.get_data.map(function(item) {
                 return {
                     value: item.count,
                     name: item.type
@@ -25,7 +25,7 @@ var vm_character_count_radar = new Vue({
             var result = [];
             for (item in this.data_head) {
                 result.push({
-                    name: this.data[item],
+                    name: this.data_head[item],
                     max: max,
                 });
             }
@@ -44,6 +44,7 @@ var vm_character_count_radar = new Vue({
             $('#' + this.title + '_chart').height(this.box_size.height);
 
             var option = {
+                color: color,
                 // title: {
                 //     text: this.title
                 // },
@@ -59,6 +60,7 @@ var vm_character_count_radar = new Vue({
                     name: '',
                     type: 'radar',
                     // areaStyle: {normal: {}},
+                    itemStyle: { normal: { areaStyle: { type: 'default' } } },
                     data: [{
                         value: this.data_value,
                         name: this.title

@@ -9,8 +9,8 @@
         <div class="col-sm-12 col-md-4">
             <div class="panel" id='character_info'>
                 <div class="panel-heading">
-                    User Information
-                    <!-- <button class="button button-borderless right" @click='refresh(0)'><i class="fa fa-refresh"></i></button> -->
+                    Character Information
+                    <button class="button button-borderless right" @click='refresh(0)'><i class="fa fa-refresh"></i></button>
                 </div>
                 <table class="table" v-cloak>
                     <thead></thead>
@@ -25,11 +25,10 @@
                 </table>
             </div>
         </div>
-
         <div class="col-sm-12 col-md-4">
             <div class="panel" id='character_count_radar'>
                 <div class="panel-heading">
-                    Character Beans 
+                    Character Beans
                     <button class="button button-borderless right" @click='refresh(0)'><i class="fa fa-refresh"></i></button>
                 </div>
                 <div class="panel-body">
@@ -51,6 +50,18 @@
             </div>
         </div>
         <div class="col-sm-12 col-md-12">
+            <div class="panel" id='character_project_beans'>
+                <div class="panel-heading">
+                    Character Beans by Project (2016)
+                    <button class="button button-borderless right" @click='refresh(0)'><i class="fa fa-refresh"></i></button>
+                </div>
+                <div class="panel-body">
+                    <!-- <canvas></canvas> -->
+                    <div :id="title+'_chart'"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12">
             <div class="panel" id='character_count_month_beans'>
                 <div class="panel-heading">
                     Character Beans by Month (2016)
@@ -63,74 +74,16 @@
             </div>
         </div>
     </div>
-    <div class="page-header">
-        <h1>Bean Count<small>&emsp;demo</small></h1>
-    </div>
-    <div class="row">
-        <div class="col-sm-12 col-md-4">
-            <div class="panel" id='count_bean'>
-                <div class="panel-heading">
-                    Count Bean (all)
-                    <button class="button button-borderless right" @click='refresh(0)'><i class="fa fa-refresh"></i></button>
-                </div>
-                <div class="panel-body">
-                    <!-- <canvas></canvas> -->
-                    <div :id="title+'_chart'"></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-12 col-md-8">
-            <div class="panel" id='count_bean_by_year'>
-                <div class="panel-heading">
-                    Count Bean (2016)
-                    <button class="button button-borderless right" @click='refresh(0)'><i class="fa fa-refresh"></i></button>
-                </div>
-                <div class="panel-body">
-                    <!-- <canvas></canvas> -->
-                    <div :id="title+'_chart'"></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-12 col-md-12">
-            <div class="panel" id='count_bean_by_year_month'>
-                <div class="panel-heading">
-                    Count Bean by Month (2016)
-                    <button class="button button-borderless right" @click='refresh(0)'><i class="fa fa-refresh"></i></button>
-                </div>
-                <div class="panel-body">
-                    <!-- <canvas></canvas> -->
-                    <div :id="title+'_chart'"></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-12 col-md-12">
-            <div class="panel" id='count_bean_by_month_day'>
-                <div class="panel-heading">
-                    Count Bean by Day (2016-08)
-                    <button class="button button-borderless right" @click='refresh(0)'><i class="fa fa-refresh"></i></button>
-                </div>
-                <div class="panel-body">
-                    <!-- <canvas></canvas> -->
-                    <div :id="title+'_chart'"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <button class="button button-borderless right" @click='refresh(0)'><i class="fa fa-refresh"></i></button>
 </div>
 <br>
 <br>
 <br>
 <br> {% endblock %} {% block js %}
 <script>
-
 </script>
 <script type="text/javascript" src="/static/js/charts/character_info.js"></script>
 <script type="text/javascript" src="/static/js/charts/character_count_radar.js"></script>
 <script type="text/javascript" src="/static/js/charts/character_count_pie.js"></script>
-<script type="text/javascript" src="/static/js/charts/character_count_year_beans.js"></script>
 <script type="text/javascript" src="/static/js/charts/character_count_month_beans.js"></script>
-<script type="text/javascript" src="/static/js/charts/character_timeline.js"></script>
-<script type="text/javascript" src="/static/js/charts/character_relation.js"></script>
 <script type="text/javascript" src="/static/js/charts/character_project_beans.js"></script>
 {% endblock %}

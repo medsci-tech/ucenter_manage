@@ -5,25 +5,23 @@ var vm_character_count_month_beans = new Vue({
         get_data: '',
         box_size: {
             width: 'auto',
-            height: 250
+            height: 400
         },
-        get_url: 'month_character/' + phone + '/2016',
+        get_url: 'month_character/2016',
  
-        data_head: ['character'],
+        data_head: ['popularize', 'consume', 'article_learn', 'register'],
     },
     computed: {
         data: function() {
-            var data = this.get_data.map(function(item) {
-                return {
-                    value: item.count,
-                    name: item.name
-                }
-            })
+            var data = this.get_data;
             var result = {
-                character: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                popularize: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                consume: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                article_learn: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                register: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
             };
             for (item in data) {
-                result[data[item].name][data[item].month - 1] = data[item].value
+                result[data[item].type][data[item].month - 1] = data[item].count
             }
             return result;
         },
@@ -50,7 +48,7 @@ var vm_character_count_month_beans = new Vue({
                     right: '5%',
                     feature: {
                         magicType: {
-                            type: ['bar', 'line']
+                            type: ['line', 'bar', 'stack', 'tiled']
                         },
                     }
                 },
@@ -60,13 +58,12 @@ var vm_character_count_month_beans = new Vue({
                     //     type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
                     // }
                 },
-                // legend: {
-                //     data: [this.data_head[0]+'_line',this.data_head[0]+'_bar',],
-                // },
+                legend: {
+                    data: this.data_head,
+                },
                 grid: {
-                    top: '10%',
-                    left: '6%',
-                    right: '8%',
+                    left: '3%',
+                    right: '6%',
                     bottom: '3%',
                     containLabel: true
                 },
@@ -78,19 +75,50 @@ var vm_character_count_month_beans = new Vue({
                         show: true,
                     },
                     data: this.xAxis_data,
+                    nameTextStyle: {
+                        fontWeight: 'bold'
+                    }
                 }],
                 yAxis: [{
                     type: 'value',
-                    name: 'bean'
+                    name: 'bean',
+                    nameTextStyle: {
+                        fontWeight: 'bold'
+                    }
                 }],
                 series: [{
                     type: 'line',
                     name: this.data_head[0],
+                    stack: 'all',
                     data: this.data[this.data_head[0]],
-                    areaStyle: { normal: {} },      
+                    areaStyle: { normal: {} },
                     smooth: true,
                     symbol: 'none',
-                }]
+                }, {
+                    type: 'line',
+                    name: this.data_head[1],
+                    stack: 'all',
+                    data: this.data[this.data_head[1]],
+                    areaStyle: { normal: {} },
+                    smooth: true,
+                    symbol: 'none',
+                }, {
+                    type: 'line',
+                    name: this.data_head[2],
+                    stack: 'all',
+                    data: this.data[this.data_head[2]],
+                    areaStyle: { normal: {} },
+                    smooth: true,
+                    symbol: 'none',
+                }, {
+                    type: 'line',
+                    name: this.data_head[3],
+                    stack: 'all',
+                    data: this.data[this.data_head[3]],
+                    areaStyle: { normal: {} },
+                    smooth: true,
+                    symbol: 'none',
+                }, ]
             };
             var chart = echarts.init(document.getElementById(this.title + '_chart'));
             chart.setOption(option);
@@ -114,9 +142,6 @@ var vm_character_count_month_beans = new Vue({
     compiled: function() {
 
         var vm = this;
-
-        // vm.get_data = '[{"role": "doctor", "count": 2, "month": 5}, {"role": "doctor", "count": 12, "month": 8}, {"role": "doctor", "count": 32, "month": 7}, {"role": "doctor", "count": 1, "month": 6}, {"role": "doctor", "count": 6, "month": 4}, {"role": "doctor", "count": 49, "month": 3}]';
-        // vm.chart();
 
         $.get(this.get_url, {}, function(data) {
             vm.get_data = data;
