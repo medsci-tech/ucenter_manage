@@ -10,12 +10,12 @@
                 <b>from</b> &nbsp;
                 <div class="form-group">
                     <label class="sr-only" for="start_time">起始时间</label>
-                    <input type="date" class="form-control" name="start_time" id="start_time">
+                    <input type="date" class="form-control" name="start_time" id="start_time" value="{{ reqList.start_time }}">
                 </div>
                 &nbsp; <b>to</b> &nbsp;
                 <div class="form-group">
                     <label class="sr-only" for="end_time">截止时间</label>
-                    <input type="date" class="form-control" name="end_time" id="end_time">
+                    <input type="date" class="form-control" name="end_time" id="end_time" value="{{ reqList.end_time }}">
                 </div>
                 &nbsp; <b>type</b> &nbsp;
                 <div class="form-group">
@@ -37,7 +37,7 @@
             <form class="form-inline text-center" role="form" action="">
                 <div class="form-group">
                     <label class="" for="phone">User Phone &nbsp;</label>
-                    <input required type="number" class="form-control" name="phone" id="phone">
+                    <input required type="number" class="form-control" name="phone" id="phone" value="{{ reqList.phone }}">
                 </div>
                 <button type="submit" class="btn btn-default">Search</button>
             </form>
@@ -59,7 +59,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for data in pageData.data_list %}
+                        {% for data in data_list %}
                         <tr>
                             <td>{{ data.phone }}</td>
                             <td>{{ data.role }}</td>
@@ -76,4 +76,12 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block js %}
+<script>
+  $(function () {
+    $('#role').val('{{ reqList.role }}');
+  })
+</script>
 {% endblock %}

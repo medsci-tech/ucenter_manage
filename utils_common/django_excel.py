@@ -6,7 +6,7 @@ from django.http import HttpResponse
 
 def import_response(filename=None):
     response = HttpResponse(content_type='application/ms-excel')
-    response['Content-Disposition'] = 'attachment; filename="%s.xls"' % filename
+    response['Content-Disposition'] = 'attachment; filename="%s.xlsx"' % filename
     return response
 
 
@@ -43,11 +43,17 @@ def excel_export(columns, rows):
     # return response
 
 
-def export_excel():
+def export_excel(columns, rows):
     import openpyxl
     import datetime
     wb = openpyxl.Workbook()
-    wb.create_sheet(title='user-list', index=0)
-    ws = wb.get_sheet_by_name('user-list')
-    ws.append(['name', 'age', '15623093771', datetime.datetime.now()])
-    wb.save('./test.xlsx')
+    wb.create_sheet(title='Sheet1', index=0)
+    ws = wb.get_sheet_by_name('Sheet1')
+    ws.append(columns)  # title
+    # ws.column_dimensions["A"].width = 10  # 设置宽度
+
+    for row in rows:
+        print(row)
+        ws.append(row)
+
+    return wb
