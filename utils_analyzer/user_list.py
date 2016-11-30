@@ -20,7 +20,10 @@ def _user_list(res_params):
             params['create_time'] = {'$gte': start_time_obj}
         if end_time:
             end_time_obj = datetime.datetime.strptime(end_time, '%Y-%m-%d')
-            params['create_time']['$lte'] = end_time_obj
+            if 'create_time' in params.keys():
+                params['create_time']['$lte'] = end_time_obj
+            else:
+                params['create_time'] = {'$lte': end_time_obj}
     return params
 
 
