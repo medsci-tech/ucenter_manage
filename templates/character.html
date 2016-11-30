@@ -7,12 +7,12 @@
     </div>
     <div class="row">
         <div class="col-sm-12 col-md-4">
-            <div class="panel" id='character_info'>
+            <div class="panel table-responsive" id='character_info'>
                 <div class="panel-heading">
                     Character Information
                     <button class="button button-borderless right" @click='refresh(0)'><i class="fa fa-refresh"></i></button>
                 </div>
-                <table class="table" v-cloak>
+                <table class="table table-striped table-hover table-bordered" v-cloak>
                     <thead></thead>
                     <tbody>
                         <template v-for="(key, value) in data">
