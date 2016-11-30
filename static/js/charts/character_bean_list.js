@@ -8,7 +8,7 @@ var vm_character_bean_list = new Vue({
             height: 250
         },
         page: 1,
-        page_count: 100,
+        page_count: 1,
         get_url: 'bean_list/',
     },
     methods: {
@@ -27,26 +27,30 @@ var vm_character_bean_list = new Vue({
         },
         choose_page: function(i) {
             var vm = this;
-            if (i < 0) { i = 0 };
-            if (i > vm.page_count) { i = vm.page_count - 1 };
+            if (i < 1) { i = 1 };
+            if (i > vm.page_count) { i = vm.page_count };
             $.get(vm.get_url + i, {}, function(data) {
                 if (data) {
-                    var data = JSON.parse(data);
                     vm.page = i;
-                    vm.page_count = data.page_count
-                    vm.data = JSON.parse(data.page_data);
+                    vm.page_count = Math.ceil(data.count/20);
+                    vm.data = data.rows;
                 }
             })
         }
     },
+    computed: {
+        page_array: function() {
+            var start = Math.floor((this.page-1) / 10) * 10 +1,
+                end = (start + 10) < this.page_count ? (start + 10) : this.page_count,
+                result = [];
+            for (var i = start; i <= end; i++) {
+                result.push(i);
+            }
+            return result;
+        }
+    },
     compiled: function() {
-
-        var vm = this;
-
-        $.get(vm.get_url + vm.page, {}, function(data) {
-            vm.data = data;
-        });
-
+        this.choose_page(1);
     }
 
-}); 
+});

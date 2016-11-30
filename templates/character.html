@@ -83,28 +83,26 @@
                     <table class="table table-striped table-hover table-bordered" v-cloak>
                         <thead>
                             <tr>
-                                <th>option</th>
-                                <th>result</th>
+                                <th v-for="(key, value) in data[0]">[[key]]</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <template v-for="(key, value) in data">
-                                <tr v-if="is_show(value)">
-                                    <th class="text-right">[[key]]</th>
-                                    <td>[[value]]</td>
+                            <template v-for="item in data">
+                                <tr v-if="is_show(1)">
+                                    <td v-for="(key, value) in item">[[value]]</td>
                                 </tr>
                             </template>
                         </tbody>
                     </table>
                     <nav v-cloak>
-                        <ul class="pagination">
-                            <li :class="page < 10 ? 'disabled':''"><a href="#" @click="choose_page(0)">&laquo;</a></li>
-                            <li :class="page < 10 ? 'disabled':''"><a href="#" @click="choose_page(page-10)">Prev 10</a></li>
-                            <li :class="page == 0 ? 'disabled':''"><a href="#" @click="choose_page(page-1)">Prev</a></li>
-                            <li v-for="item in page_array" :class="item == page?'active':''" @click="choose_page(item)"><a href="#">[[item+1]]</a></li>
-                            <li :class="page == page_array ? 'disabled':''"><a href="#" @click="choose_page(page+1)">Next</a></li>
-                            <li :class="page_array.length < 10 ? 'disabled':''"><a href="#" @click="choose_page(page+10)">Next 10</a></li>
-                            <li :class="page_array.length < 10 ? 'disabled':''"><a href="#" @click="choose_page(page_count)">&raquo;</a></li>
+                        <ul class="pagination" style="cursor: pointer;">
+                            <li :class="page == 1 ? 'disabled':''"><a @click="choose_page(1)">&laquo;</a></li>
+                            <li :class="page < 11 ? 'disabled':''"><a @click="choose_page(page-10)">Prev 10</a></li>
+                            <li :class="page == 1 ? 'disabled':''"><a @click="choose_page(page-1)">Prev</a></li>
+                            <li v-for="item in page_array" :class="item == page?'active':''" @click="choose_page(item)"><a>[[item]]</a></li>
+                            <li :class="page == page_count ? 'disabled':''"><a @click="choose_page(page+1)">Next</a></li>
+                            <li :class="page_array.length <= 10 ? 'disabled':''"><a @click="choose_page(page+10)">Next 10</a></li>
+                            <li :class="page == page_count ? 'disabled':''"><a @click="choose_page(page_count)">&raquo;</a></li>
                         </ul>
                     </nav>
                 </div>

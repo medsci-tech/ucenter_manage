@@ -39,7 +39,7 @@ var vm_character_project_beans = new Vue({
                     // symbolOffset: [0, '50%'],
                     symbolSize: function(item) {
                         // return item[2];
-                        return Math.log(item[2]) * 12;
+                        return Math.log(item[2]) * 7;
                     },
                     data: [item],
                     label: {
