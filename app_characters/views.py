@@ -63,13 +63,15 @@ def bean_list(request, phone, page):
     ret = user_bean_list(phone, page)
     ret_rows = []
     if ret:
-        for row in ret:
+        for row in ret.get('data'):
             temp_data = {
+                'project_name_en': row['project_name_en'],
                 'posted_beans': row['posted_beans'],
                 'saved_beans': row['saved_beans'],
                 'rule_name_en': row['rule_name_en'],
                 'rule_type_name_en': row['rule_type_name_en'],
+                'create_time': row['create_time'].strftime('%Y-%m-%d %H:%M:%S'),
             }
             ret_rows.append(temp_data)
-    response = JsonResponse(ret_rows, safe=False)
+    response = JsonResponse({'rows': ret_rows, 'count': ret.get('count')}, safe=False)
     return response
