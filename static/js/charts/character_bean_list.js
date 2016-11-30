@@ -7,7 +7,7 @@ var vm_character_bean_list = new Vue({
             width: 'auto',
             height: 250
         },
-        page: 0,
+        page: 1,
         page_count: 100,
         get_url: 'bean_list/',
     },

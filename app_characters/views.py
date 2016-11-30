@@ -10,6 +10,7 @@ from utils_analyzer.character_analyzer import user_character
 from utils_analyzer.character_analyzer import year_character
 from utils_analyzer.character_analyzer import month_character
 from utils_analyzer.character_analyzer import user_projects
+from utils_analyzer.character_analyzer import user_bean_list
 from utils_common.auth_wrapper import auth_wrapper
 
 
@@ -56,3 +57,19 @@ def user_month_character(request, phone, year):
     response = JsonResponse(ret, safe=False)
     return response
 
+
+@auth_wrapper
+def bean_list(request, phone, page):
+    ret = user_bean_list(phone, page)
+    ret_rows = []
+    if ret:
+        for row in ret:
+            temp_data = {
+                'posted_beans': row['posted_beans'],
+                'saved_beans': row['saved_beans'],
+                'rule_name_en': row['rule_name_en'],
+                'rule_type_name_en': row['rule_type_name_en'],
+            }
+            ret_rows.append(temp_data)
+    response = JsonResponse(ret_rows, safe=False)
+    return response
