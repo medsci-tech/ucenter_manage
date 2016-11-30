@@ -37,7 +37,7 @@ def form_user_list(res_params=None):
     offset = (page - 1) * 20
     limit = page * 20
     if not params:
-        ret = User.objects.filter().order_by('id')[offset:limit]
+        ret = User.objects.all().order_by('id')[offset:limit]
         ret_count = User.objects.all().count()
     else:
         ret = User.objects(__raw__=params).order_by('id')[offset:limit]
@@ -47,8 +47,9 @@ def form_user_list(res_params=None):
 
 def export_user_list(res_params=None):
     params = _user_list(res_params)
+    print(params)
     if not params:
-        ret = User.objects.all()
+        ret = User.objects.all().values_list('phone', 'role', 'total_beans', 'create_time').order_by('id')[:20]
     else:
-        ret = User.objects(__raw__=params).only('phone', 'role', 'total_beans', 'create_time')
+        ret = User.objects(__raw__=params).values_list('phone', 'role', 'total_beans', 'create_time').order_by('id')[:20]
     return list(ret)
