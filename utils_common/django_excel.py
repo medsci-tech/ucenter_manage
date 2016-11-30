@@ -41,3 +41,13 @@ def excel_export(columns, rows):
     return wb
     # wb.save(response)
     # return response
+
+
+def export_excel():
+    import openpyxl
+    import datetime
+    wb = openpyxl.Workbook()
+    wb.create_sheet(title='user-list', index=0)
+    ws = wb.get_sheet_by_name('user-list')
+    ws.append(['name', 'age', '15623093771', datetime.datetime.now()])
+    wb.save('./test.xlsx')
