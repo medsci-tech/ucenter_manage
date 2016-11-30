@@ -1,5 +1,9 @@
 from django.shortcuts import render
 from django.http import JsonResponse
+from django.http import HttpResponse
+import json
+from django.core import serializers
+from models import User
 
 from utils_analyzer.character_analyzer import user_info
 from utils_analyzer.character_analyzer import user_character
@@ -18,7 +22,10 @@ def index(request, phone):
 @auth_wrapper
 def info(request, phone):
     ret = user_info(phone)
-    response = JsonResponse(ret, safe=False)
+    ret_data = {}
+    for row in ret:
+        ret_data[str(row)] = str(ret[row])
+    response = JsonResponse(ret_data, safe=False)
     return response
 
 

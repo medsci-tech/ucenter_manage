@@ -5,7 +5,7 @@ from models import Bean
 
 def user_info(phone):
     user = User.objects.get(phone=phone)
-    return list(user)
+    return user
 
 
 def user_character(phone):
