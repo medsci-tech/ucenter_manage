@@ -25,10 +25,11 @@ def list(request):
     # return HttpResponse(req)
     data = form_user_list(req)
     page = request.GET.get('page', 1)  # 获取页码
-    pageData = paginationForMime(page=page, data=data)
+    pageData = paginationForMime(page=page, data=data, request=req)
 
     return render(request, 'user_list.html', {
         'pageData': pageData,
+        'data_list': data.get('list'),
         'reqList': req,
     })
 
