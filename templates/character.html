@@ -73,6 +73,43 @@
                 </div>
             </div>
         </div>
+        <div class="col-sm-12 col-md-12">
+            <div class="panel table-responsive" id='character_bean_list'>
+                <div class="panel-heading">
+                    Character Bean List
+                    <button class="button button-borderless right" @click='refresh(0)'><i class="fa fa-refresh"></i></button>
+                </div>
+                <div class="panel-body table-responsive">
+                    <table class="table table-striped table-hover table-bordered" v-cloak>
+                        <thead>
+                            <tr>
+                                <th>option</th>
+                                <th>result</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template v-for="(key, value) in data">
+                                <tr v-if="is_show(value)">
+                                    <th class="text-right">[[key]]</th>
+                                    <td>[[value]]</td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                    <nav v-cloak>
+                        <ul class="pagination">
+                            <li :class="page < 10 ? 'disabled':''"><a href="#" @click="choose_page(0)">&laquo;</a></li>
+                            <li :class="page < 10 ? 'disabled':''"><a href="#" @click="choose_page(page-10)">Prev 10</a></li>
+                            <li :class="page == 0 ? 'disabled':''"><a href="#" @click="choose_page(page-1)">Prev</a></li>
+                            <li v-for="item in page_array" :class="item == page?'active':''" @click="choose_page(item)"><a href="#">[[item+1]]</a></li>
+                            <li :class="page == page_array ? 'disabled':''"><a href="#" @click="choose_page(page+1)">Next</a></li>
+                            <li :class="page_array.length < 10 ? 'disabled':''"><a href="#" @click="choose_page(page+10)">Next 10</a></li>
+                            <li :class="page_array.length < 10 ? 'disabled':''"><a href="#" @click="choose_page(page_count)">&raquo;</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <br>
@@ -82,6 +119,7 @@
 <script>
 </script>
 <script type="text/javascript" src="/static/js/charts/character_info.js"></script>
+<script type="text/javascript" src="/static/js/charts/character_bean_list.js"></script>
 <script type="text/javascript" src="/static/js/charts/character_count_radar.js"></script>
 <script type="text/javascript" src="/static/js/charts/character_count_pie.js"></script>
 <script type="text/javascript" src="/static/js/charts/character_count_month_beans.js"></script>
