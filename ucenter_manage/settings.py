@@ -89,7 +89,7 @@ DATABASES = {
 # init mongodb connection
 import mongoengine
 MONGODB_DB = 'ucenter'
-MONGODB_HOST = '115.28.93.36'
+MONGODB_HOST = 'dds-2zedefa8064299842.mongodb.rds.aliyuncs.com'
 MONGODB_PORT = 3717
 MONGODB_USERNAME = 'test_admin'
 MONGODB_PASSWORD = 'test_admin_2016'
@@ -97,7 +97,8 @@ mongoengine.connect(MONGODB_DB,
         host=MONGODB_HOST,
         port=MONGODB_PORT,
         username=MONGODB_USERNAME,
-        password=MONGODB_PASSWORD)
+        password=MONGODB_PASSWORD,
+        connect=False)
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
