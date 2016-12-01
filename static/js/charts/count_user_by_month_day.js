@@ -8,19 +8,20 @@ var vm_count_user_by_month_day = new Vue({
             width: 'auto',
             height: 400
         },
-        data_head: ['doctor', 'user','volunteer',],
- 
+        data_head: ['doctor', 'user', 'volunteer', ],
+
         select_year: now_year,
         select_month: now_month
     },
     computed: {
         data: function() {
             var data = this.get_data;
-            var result = {
-                volunteer: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ],
-                doctor: [],
-                user: [],
-            };
+
+            var l = this.data_head.length;
+            var result = {};
+            for (i = 0; i < l; i++) {
+                result[this.data_head[i]] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ];
+            }
             for (item in data) {
                 result[data[item].role][data[item].day - 1] = data[item].count
             }
@@ -60,7 +61,7 @@ var vm_count_user_by_month_day = new Vue({
             });
 
             var option = {
-                 color: color,
+                color: color,
                 // title: {
                 //     text: this.title,
                 //     subtext: '',
