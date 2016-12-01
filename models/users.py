@@ -26,6 +26,6 @@ class User(Document):
 
     meta = {
         'indexs': ['phone'],
-        'collection': 'test_users_copy'
+        'collection': 'users'
     }
 

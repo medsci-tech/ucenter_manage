@@ -23,6 +23,6 @@ class Bean(Document):
 
     meta = {
         'indexs': ['user_phone'],
-        'collection': 'test_user_beans_copy'
+        'collection': 'beans'
     }
 
