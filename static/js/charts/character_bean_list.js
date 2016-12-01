@@ -32,7 +32,7 @@ var vm_character_bean_list = new Vue({
             $.get(vm.get_url + i, {}, function(data) {
                 if (data) {
                     vm.page = i;
-                    vm.page_count = Math.ceil(data.count/20);
+                    vm.page_count = data.count;
                     vm.data = data.rows;
                 }
             })

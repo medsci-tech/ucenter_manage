@@ -53,6 +53,7 @@ var vm_character_count_radar = new Vue({
                     data: ['character']
                 },
                 radar: {
+                    radius: '65%',
                     // shape: 'circle',
                     indicator: this.indicator
                 },

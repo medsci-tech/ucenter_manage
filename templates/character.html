@@ -84,13 +84,13 @@
                         <table class="table table-striped table-hover table-bordered" v-cloak>
                            <thead>
                                <tr>
-                                   <th v-for="(key, value) in data[0]">[[key]]</th>
+                                   <th v-for="(key, value) in data[0]" v-if="key != 'posted_beans'">[[key]]</th>
                                </tr>
                            </thead>
                            <tbody>
                                <template v-for="item in data">
                                    <tr v-if="is_show(1)">
-                                       <td v-for="(key, value) in item">[[value]]</td>
+                                       <td v-for="(key, value) in item" v-if="key != 'posted_beans'" >[[value]]</td>
                                    </tr>
                                </template>
                            </tbody>
