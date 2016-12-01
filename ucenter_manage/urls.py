@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^home/', include('app_home.urls')),
     url(r'^doctors/', include('app_doctors.urls')),
     url(r'^users/', include('app_users.urls')),
+    url(r'^members/', include('app_members.urls')),
     url(r'^characters/', include('app_characters.urls')),
     url(r'^admin/', admin.site.urls),
 ]
