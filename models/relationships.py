@@ -7,10 +7,10 @@ from mongoengine import DateTimeField
 
 class Relationship(Document):
     upstream_phone = StringField(required=True, max_length=11)
-    upstream_role = StringField(required=True)
+    upstream_role = StringField()
 
     downstream_phone = StringField(required=True, max_length=11)
-    downstream_role = StringField(required=True)
+    downstream_role = StringField()
 
     project_name_en = StringField()
     create_time = DateTimeField(default=datetime.datetime.now())
