@@ -1,6 +1,7 @@
 from mongoengine import Q
 from models import User
 from models import Bean
+import math
 
 
 def user_info(phone):
@@ -100,7 +101,8 @@ def user_project_beans(phone, project):
 
 
 def user_bean_list(phone, page):
+    limit = 20
     page = int(page) if int(page) > 1 else 1
-    ret = Bean.objects(Q(user_phone=phone)).order_by('id')[(page-1)*20:page*20]
+    ret = Bean.objects(Q(user_phone=phone)).order_by('id')[(page-1) * limit: page * limit]
     ret_count = Bean.objects(Q(user_phone=phone)).count()
-    return {'data':list(ret), 'count': ret_count}
+    return {'data': list(ret), 'count': math.ceil(ret_count / limit)}
