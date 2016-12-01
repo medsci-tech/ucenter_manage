@@ -7,7 +7,6 @@ from utils_analyzer.user_analyzer import day_user
 from utils_analyzer.bean_analyzer import year_bean
 from utils_analyzer.bean_analyzer import month_bean
 from utils_analyzer.bean_analyzer import day_bean
-from utils_analyzer.user_list import *
 
 from utils_common.auth_wrapper import auth_wrapper
 from utils_common.django_excel import *
@@ -17,21 +16,6 @@ from utils_common.pagination import paginationForMime
 @auth_wrapper
 def index(request):
     return render(request, 'users.html')
-
-
-@auth_wrapper
-def list(request):
-    req = request.GET
-    # return HttpResponse(req)
-    data = form_user_list(req)
-    page = request.GET.get('page', 1)  # 获取页码
-    pageData = paginationForMime(page=page, data=data, request=req)
-
-    return render(request, 'user_list.html', {
-        'pageData': pageData,
-        'data_list': data.get('list'),
-        'reqList': req,
-    })
 
 
 @auth_wrapper
@@ -75,19 +59,3 @@ def users_day_bean(request, year, month):
     response = JsonResponse(ret, safe=False)
     return response
 
-
-@auth_wrapper
-def user_export(request):
-    columns = [
-        '手机号',
-        '角色',
-        '迈豆数',
-        '注册时间',
-    ]
-    req = request.GET
-    # 查询结果
-    rows = export_user_list(req)
-    response = import_response('user_list')
-    excel = export_excel(columns, rows)
-    excel.save(response)
-    return response

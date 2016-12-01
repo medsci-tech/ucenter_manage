@@ -7,14 +7,9 @@ from utils_common.auth_wrapper import auth_wrapper
 from utils_common.django_excel import *
 from utils_common.pagination import paginationForMime
 
-# Create your views here.
+
 @auth_wrapper
 def index(request):
-    return render(request, 'members.html')
-
-
-@auth_wrapper
-def list(request):
     req = request.GET
     # return HttpResponse(req)
     data = form_user_list(req)
