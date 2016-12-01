@@ -5,7 +5,7 @@ from models import Bean
 
 def user_info(phone):
     user = User.objects.get(phone=phone)
-    return list(user)
+    return user
 
 
 def user_character(phone):
@@ -99,3 +99,8 @@ def user_project_beans(phone, project):
     return list(ret)
 
 
+def user_bean_list(phone, page):
+    page = int(page) if int(page) > 1 else 1
+    ret = Bean.objects(Q(user_phone=phone)).order_by('id')[(page-1)*20:page*20]
+    ret_count = Bean.objects(Q(user_phone=phone)).count()
+    return {'data':list(ret), 'count': ret_count}

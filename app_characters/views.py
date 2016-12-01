@@ -1,11 +1,16 @@
 from django.shortcuts import render
 from django.http import JsonResponse
+from django.http import HttpResponse
+import json
+from django.core import serializers
+from models import User
 
 from utils_analyzer.character_analyzer import user_info
 from utils_analyzer.character_analyzer import user_character
 from utils_analyzer.character_analyzer import year_character
 from utils_analyzer.character_analyzer import month_character
 from utils_analyzer.character_analyzer import user_projects
+from utils_analyzer.character_analyzer import user_bean_list
 from utils_common.auth_wrapper import auth_wrapper
 
 
@@ -18,7 +23,10 @@ def index(request, phone):
 @auth_wrapper
 def info(request, phone):
     ret = user_info(phone)
-    response = JsonResponse(ret, safe=False)
+    ret_data = {}
+    for row in ret:
+        ret_data[str(row)] = str(ret[row])
+    response = JsonResponse(ret_data, safe=False)
     return response
 
 
@@ -49,3 +57,21 @@ def user_month_character(request, phone, year):
     response = JsonResponse(ret, safe=False)
     return response
 
+
+@auth_wrapper
+def bean_list(request, phone, page):
+    ret = user_bean_list(phone, page)
+    ret_rows = []
+    if ret:
+        for row in ret.get('data'):
+            temp_data = {
+                'project_name_en': row['project_name_en'],
+                'posted_beans': row['posted_beans'],
+                'saved_beans': row['saved_beans'],
+                'rule_name_en': row['rule_name_en'],
+                'rule_type_name_en': row['rule_type_name_en'],
+                'create_time': row['create_time'].strftime('%Y-%m-%d %H:%M:%S'),
+            }
+            ret_rows.append(temp_data)
+    response = JsonResponse({'rows': ret_rows, 'count': ret.get('count')}, safe=False)
+    return response

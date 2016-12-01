@@ -7,31 +7,27 @@ var vm_character_count_pie = new Vue({
             width: 'auto',
             height: 300
         },
-        get_url: 'year_character/' + phone + '/2016',
-         
+        get_url: 'year_character/2016',
+
+        data_head: ['popularize', 'consume', 'article_learn', 'register']
+
     },
     computed: {
         data: function() {
-             return this.get_data.map(function(item) {
+            return this.get_data.map(function(item) {
                 return {
                     value: item.count,
-                    name: item.role
+                    name: item.type
                 }
             })
         },
-        data_head: function() {
-            var result = [];
-            for (item in this.data) {
-                result.push(this.data[item].name);
-            }
-            return result;
-        }
     },
     methods: {
         chart: function() {
             $('#' + this.title + '_chart').height(this.box_size.height);
 
             var option = {
+                color: color,
                 // title: {
                 //     text: '*Count User (all)',
                 //     subtext: '',

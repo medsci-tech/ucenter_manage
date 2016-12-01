@@ -25,10 +25,11 @@ def list(request):
     # return HttpResponse(req)
     data = form_user_list(req)
     page = request.GET.get('page', 1)  # 获取页码
-    pageData = paginationForMime(page=page, data=data)
+    pageData = paginationForMime(page=page, data=data, request=req)
 
     return render(request, 'user_list.html', {
         'pageData': pageData,
+        'data_list': data.get('list'),
         'reqList': req,
     })
 
@@ -83,11 +84,10 @@ def user_export(request):
         '迈豆数',
         '注册时间',
     ]
-    post = request.POST
+    req = request.GET
     # 查询结果
-    rows = export_user_list(**post)
-
-    response = import_response('2016')
-    excel = excel_export(columns, rows)
+    rows = export_user_list(req)
+    response = import_response('user_list')
+    excel = export_excel(columns, rows)
     excel.save(response)
     return response

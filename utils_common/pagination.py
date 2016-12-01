@@ -7,7 +7,18 @@ import math
 # 分页
 def paginationForMime(**kwargs):
     data = kwargs.get('data')
-    pageStart = int(kwargs.get('page'))  # 获取页码
+    page = kwargs.get('page')
+    request = kwargs.get('request')
+    # 页码url连接
+    href_str = '?'
+    if request:
+        for i in request:
+            if i != 'page':
+                href_str += i + '=' + request[i] + '&'
+    if page:
+        pageStart = int(page)  # 获取页码
+    else:
+        pageStart = 1
 
     limit = 20  # 每页显示的记录数
 
@@ -15,16 +26,8 @@ def paginationForMime(**kwargs):
         pageSizeLength = int(kwargs.get('length'))  # 当前n页页码
     except Exception as e:
         pageSizeLength = 7  # 默认中间页数
-
-    paginator = Paginator(data, limit)  # 实例化一个分页对象
-    try:
-        data_list = paginator.page(pageStart)  # 获取某页对应的记录
-    except PageNotAnInteger:  # 如果页码不是个整数
-        data_list = paginator.page(1)  # 取第一页的记录
-    except EmptyPage:  # 如果页码太大，没有相应的记录
-        data_list = paginator.page(paginator.num_pages)  # 取最后一页的记录
-
-    GetListPageCount = int(paginator.num_pages)  # 总页数
+    GetListPageCount = math.ceil(int(data.get('count')) / limit)  # 总页数
+    print(GetListPageCount)
     page_pre = pageStart - math.floor(pageSizeLength / 2)
     page_next = pageStart + math.ceil(pageSizeLength / 2)
     assign_pageLengthNext = 0
@@ -46,9 +49,10 @@ def paginationForMime(**kwargs):
         assign_pageEnd = GetListPageCount + 1
 
     return {
-        'data_list': data_list,
-        'page_has_previous': assign_pageLengthPrev,
-        'page_has_next': assign_pageLengthNext,
+        'page_previous_number': assign_pageLengthPrev,
+        'page_next_number': assign_pageLengthNext,
         'page_last': GetListPageCount,
+        'page_current': pageStart,
         'page_range': range(assign_pageStart, assign_pageEnd),
+        'page_url': href_str,
     }

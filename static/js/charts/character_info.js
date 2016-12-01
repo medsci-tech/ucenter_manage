@@ -11,10 +11,17 @@ var vm_character_info = new Vue({
     },
     methods: {
         is_show: function(e) {
-            if (typeof(e) == 'object') {
+            if (typeof(e) == 'object' || e == 'None') {
                 return false;
             }
             return true;
+        },
+        refresh: function(e) {
+            var vm = this;
+
+            $.get(this.get_url, {}, function(data) {
+                vm.data = data;
+            });
         }
     },
     compiled: function() {
@@ -22,7 +29,7 @@ var vm_character_info = new Vue({
         var vm = this;
 
         $.get(this.get_url, {}, function(data) {
-            vm.get_data = data;
+            vm.data = data;
         });
 
     }
