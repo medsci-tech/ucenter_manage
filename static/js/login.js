@@ -8,7 +8,7 @@ var login = new Vue({
     },
     methods: {
         get_code: function(e) {
-            var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(17[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+            var myreg = /^(1[3578]\d{9})$/;
             if (!myreg.test(this.phone)) {
                 this.error_msg = 'please input right phone number'
             } else {

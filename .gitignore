@@ -89,3 +89,6 @@ ENV/
 .ropeproject
 /.idea
 /ucenter_manage/settings.py
+
+
+manage.sqlite
