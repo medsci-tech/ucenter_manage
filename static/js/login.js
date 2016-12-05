@@ -47,7 +47,7 @@ var login = new Vue({
                         login.error_msg = data.msg;
                         $('#submit_btn').removeAttr('disabled', 'disabled');
                     } else {
-                        widows.location.herf='/home';
+                        window.location.href='/home';
                     }
                 });
             }
