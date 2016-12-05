@@ -24,6 +24,7 @@ def index(request):
         return JsonResponse({'error': 0, 'msg': 'check success'})
 
 
+@csrf_exempt
 def get_code(request, phone):
     key = send_message(phone)
     if not key:
@@ -36,6 +37,7 @@ def get_code(request, phone):
     return JsonResponse({'error': 0})
 
 
+@csrf_exempt
 def check_code(request, phone, code):
     ret = check_user(phone, code)
     if not ret:
