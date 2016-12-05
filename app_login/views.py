@@ -8,10 +8,30 @@ from utils_common.message_sender import check_user
 
 
 # Create your views here.
+# @csrf_exempt
+# def index(request):
+#     if request.method == 'GET':
+#         return render(request, 'login.html')
+#     phone = request.POST.get('phone')
+#     code = request.POST.get('code')
+#     print('phone is {phone}, code is {code}'.format(phone=phone, code=code))
+#
+#     ret = check_user(phone, code)
+#     if not ret:
+#         return JsonResponse({'error': 1, 'msg': 'check error'})
+#     request.session['user_phone'] = phone
+#     return HttpResponseRedirect('/home/')
+
+
 @csrf_exempt
 def index(request):
+    return render(request, 'login.html')
+
+
+@csrf_exempt
+def login(request):
     if request.method == 'GET':
-        return render(request, 'login.html')
+        return HttpResponseRedirect('/')
     phone = request.POST.get('phone')
     code = request.POST.get('code')
     print('phone is {phone}, code is {code}'.format(phone=phone, code=code))
