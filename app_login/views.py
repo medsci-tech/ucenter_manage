@@ -47,7 +47,7 @@ def check_code(request, phone, code):
 
 
 @csrf_exempt
-def logout(request, phone):
+def logout(request):
     try:
         del request.session['user_phone']
     except:
