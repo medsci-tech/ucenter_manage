@@ -37,7 +37,7 @@ var login = new Vue({
             }
         },
         login: function() {
-            var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(17[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+            var myreg = /^(1[3578]\d{9})$/;
             if (!myreg.test(this.phone)) {
                 this.error_msg = 'please input right phone number'
             } else {
@@ -45,7 +45,9 @@ var login = new Vue({
                 $.get('check_code/' + this.phone + '/' + this.code, {}, function(data) {
                     if (data.error) {
                         login.error_msg = data.msg;
-                        $('#submit_btn').attr('disabled', 'disabled');
+                        $('#submit_btn').removeAttr('disabled', 'disabled');
+                    } else {
+                        widows.location.herf='/home';
                     }
                 });
             }
