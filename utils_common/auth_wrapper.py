@@ -15,5 +15,5 @@ def auth_wrapper(function):
             temp_ret = function(request, *arg, **kwargs)
             return temp_ret
         else:
-            return HttpResponseRedirect('/login/')
+            return HttpResponseRedirect('/')
     return inner
