@@ -1,11 +1,18 @@
 import datetime
-from django.db import models
+from mongoengine import Document
+from mongoengine import StringField
+from mongoengine import DateTimeField
 
 
 # Create your models here.
-class Manager(models.Model):
-    name = models.CharField(max_length=11)
-    phone = models.CharField(max_length=11)
-    code = models.CharField(max_length=6)
-    update_time = models.DateTimeField(default=datetime.datetime.now())
+class Manager(Document):
+    meta = {
+        'indexs': ['phone'],
+        'collection': 'admins'
+    }
+
+    name = StringField()
+    phone = StringField(required=True)
+    code = StringField()
+    update_time = DateTimeField(default=datetime.datetime.now())
 
