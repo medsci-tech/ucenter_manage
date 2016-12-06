@@ -21,6 +21,14 @@ def generate_key():
 
 
 def send_message(phone):
+    # 检测用户是否存在
+    try:
+        user = Manager.objects.get(phone=phone)
+    except:
+        return None
+    if not user:
+        return None
+
     global api_host
     global api_key
 
