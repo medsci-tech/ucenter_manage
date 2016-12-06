@@ -92,3 +92,4 @@ ENV/
 
 
 manage.sqlite
+/manage.sqlite
