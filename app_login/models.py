@@ -13,6 +13,6 @@ class Manager(Document):
 
     name = StringField()
     phone = StringField(required=True)
-    code = StringField()
+    code = StringField(required=True)
     update_time = DateTimeField(default=datetime.datetime.now())
 
