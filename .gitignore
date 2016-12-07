@@ -90,5 +90,3 @@ ENV/
 /.idea
 /ucenter_manage/settings.py
 
-
-/manage.sqlite
