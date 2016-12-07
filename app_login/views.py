@@ -27,6 +27,8 @@ def index(request):
 @csrf_exempt
 def get_code(request, phone):
     key = send_message(phone)
+    if key == False:
+        return JsonResponse({'error': 1, 'msg': 'check user error'})
     if not key:
         return JsonResponse({'error': 1, 'msg': 'send message error'})
 

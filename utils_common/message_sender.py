@@ -25,9 +25,9 @@ def send_message(phone):
     try:
         user = Manager.objects.get(phone=phone)
     except:
-        return None
+        return False
     if not user:
-        return None
+        return False
 
     global api_host
     global api_key

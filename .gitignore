@@ -91,5 +91,4 @@ ENV/
 /ucenter_manage/settings.py
 
 
-manage.sqlite
 /manage.sqlite
