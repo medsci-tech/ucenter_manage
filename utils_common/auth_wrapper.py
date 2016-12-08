@@ -2,11 +2,11 @@ from django.http import HttpResponseRedirect
 
 
 def is_login(request):
-    user_phone = request.session.get('user_phone', False)
-    if user_phone:
-        return True
-    return False
-    # return True
+    # user_phone = request.session.get('user_phone', False)
+    # if user_phone:
+    #     return True
+    # return False
+    return True
     
 
 def auth_wrapper(function):

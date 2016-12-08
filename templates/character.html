@@ -6,13 +6,14 @@
         <h1>Character<small>&emsp; </small></h1>
     </div>
     <div class="row">
-        <div class="col-sm-12 col-md-4">
-            <div class="panel table-responsive" id='character_info'>
+        <div class="col-sm-12 col-md-5">
+            <div class="panel" id='character_info'>
                 <div class="panel-heading">
                     Character Information
                     <button class="button button-borderless right" @click='refresh(0)'><i class="fa fa-refresh"></i></button>
                 </div>
-                <table class="table table-striped table-hover table-bordered" v-cloak>
+                <div class="table-responsive">
+                     <table class="table table-striped table-hover table-bordered" v-cloak>
                     <thead></thead>
                     <tbody>
                         <template v-for="(key, value) in data">
@@ -23,9 +24,43 @@
                         </template>
                     </tbody>
                 </table>
+                </div>
+               
             </div>
         </div>
-        <div class="col-sm-12 col-md-4">
+        <div class="col-sm-12 col-md-7">
+            <div class="panel table-responsive" id='character_relationship'>
+                <div class="panel-heading">
+                    Character Relationship
+                    <button class="button button-borderless right" @click='refresh(0)'><i class="fa fa-refresh"></i></button>
+                </div>
+                <div class="panel-body">
+                    <!-- <canvas></canvas> -->
+                    <div :id="title+'_chart'"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12">
+            <div class="panel" id='character_relationship_list'>
+                <div class="panel-heading">
+                    Character Downstream List
+                    <button class="button button-borderless right" @click='refresh(0)'><i class="fa fa-refresh"></i></button>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover table-bordered" v-cloak>
+                        <tbody>
+                            <tr>
+                                <th v-for="(key, value) in data[0]">[[ key ]]</th>
+                            </tr>
+                            <tr v-for="item in data">
+                                <td v-for="(key, value) in item">[[ value ]]</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6">
             <div class="panel" id='character_count_radar'>
                 <div class="panel-heading">
                     Character Beans
@@ -37,7 +72,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-12 col-md-4">
+        <div class="col-sm-12 col-md-6">
             <div class="panel" id='character_count_pie'>
                 <div class="panel-heading">
                     Character Beans (2016)
@@ -80,22 +115,22 @@
                     <button class="button button-borderless right" @click='refresh(0)'><i class="fa fa-refresh"></i></button>
                 </div>
                 <div class="panel-body">
-                   <div class="table-responsive">
+                    <div class="table-responsive">
                         <table class="table table-striped table-hover table-bordered" v-cloak>
-                           <thead>
-                               <tr>
-                                   <th v-for="(key, value) in data[0]" v-if="key != 'posted_beans'">[[key]]</th>
-                               </tr>
-                           </thead>
-                           <tbody>
-                               <template v-for="item in data">
-                                   <tr v-if="is_show(1)">
-                                       <td v-for="(key, value) in item" v-if="key != 'posted_beans'" >[[value]]</td>
-                                   </tr>
-                               </template>
-                           </tbody>
-                       </table>
-                   </div>
+                            <thead>
+                                <tr>
+                                    <th v-for="(key, value) in data[0]" v-if="key != 'posted_beans'">[[key]]</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <template v-for="item in data">
+                                    <tr v-if="is_show(1)">
+                                        <td v-for="(key, value) in item" v-if="key != 'posted_beans'">[[value]]</td>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </div>
                     <nav v-cloak>
                         <ul class="pagination" style="cursor: pointer;">
                             <li :class="page == 1 ? 'disabled':''"><a @click="choose_page(1)">&laquo;</a></li>
@@ -119,6 +154,8 @@
 <script>
 </script>
 <script type="text/javascript" src="/static/js/charts/character_info.js"></script>
+<script type="text/javascript" src="/static/js/charts/character_relationship.js"></script>
+<script type="text/javascript" src="/static/js/charts/character_relationship_list.js"></script>
 <script type="text/javascript" src="/static/js/charts/character_bean_list.js"></script>
 <script type="text/javascript" src="/static/js/charts/character_count_radar.js"></script>
 <script type="text/javascript" src="/static/js/charts/character_count_pie.js"></script>
