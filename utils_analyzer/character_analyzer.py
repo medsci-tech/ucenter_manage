@@ -1,12 +1,16 @@
 from mongoengine import Q
 from models import User
 from models import Bean
+from models.relationships import Relationship
 import math
 
 
 def user_info(phone):
-    user = User.objects.get(phone=phone)
-    return user
+    try:
+        user = User.objects.get(phone=phone)
+        return user
+    except:
+        return False
 
 
 def user_character(phone):
@@ -106,3 +110,38 @@ def user_bean_list(phone, page):
     ret = Bean.objects(Q(user_phone=phone)).order_by('id')[(page-1) * limit: page * limit]
     ret_count = Bean.objects(Q(user_phone=phone)).count()
     return {'data': list(ret), 'count': math.ceil(ret_count / limit)}
+
+
+def user_upstream_info(phone):
+    try:
+        relationship = Relationship.objects().get(downstream_phone=phone)
+    except:
+        return False
+    if relationship:
+        try:
+            ret = User.objects().get(phone=relationship.get('upstream_phone'))
+            return ret
+        except:
+            return False
+    else:
+        return None
+
+
+def user_downstream_info(phone):
+    try:
+        relationships = Relationship.objects().filter(upstream_phone=phone).order_by('id')
+    except:
+        return False
+    downstream_info = []
+    if relationships:
+        for relationship in relationships:
+            try:
+                ret = User.objects().get(phone=relationship.downstream_phone)
+            except:
+                ret = None
+            if ret:
+                downstream_info.append({
+                    'downstream_phone': ret.phone,
+                    'downstream_beans': ret.total_beans,
+                })
+    return downstream_info

@@ -4,6 +4,7 @@ from . import views
 urlpatterns = [
     url(r'^(?P<phone>(1[3578]\d{9}))/$', views.index),
     url(r'^(?P<phone>(1[3578]\d{9}))/info/$', views.info),
+    url(r'^(?P<phone>(1[3578]\d{9}))/upstream_downstream_beans/$', views.upstream_downstream_beans),
     url(r'^(?P<phone>(1[3578]\d{9}))/characters/$', views.characters),
     url(r'^(?P<phone>(1[3578]\d{9}))/bean_list/(?P<page>(\d+))/$', views.bean_list),
     url(r'^(?P<phone>(1[3578]\d{9}))/projects/$', views.projects),
