@@ -123,7 +123,7 @@ def user_upstream_info(phone):
         return False
     if relationship:
         try:
-            ret = User.objects().get(phone=relationship.get('upstream_phone'))
+            ret = User.objects().get(phone=relationship.upstream_phone)
         except:
             ret = None
         ret_data = {}
