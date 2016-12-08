@@ -7,10 +7,14 @@ import math
 
 def user_info(phone):
     try:
-        user = User.objects.get(phone=phone)
-        return user
+        ret = User.objects.get(phone=phone)
     except:
-        return False
+        ret = None
+    ret_data = {}
+    if ret:
+        for row in ret:
+            ret_data[str(row)] = str(ret[row])
+    return ret_data
 
 
 def user_character(phone):
@@ -120,9 +124,13 @@ def user_upstream_info(phone):
     if relationship:
         try:
             ret = User.objects().get(phone=relationship.get('upstream_phone'))
-            return ret
         except:
-            return False
+            ret = None
+        ret_data = {}
+        if ret:
+            for row in ret:
+                ret_data[str(row)] = str(ret[row])
+        return ret_data
     else:
         return None
 
@@ -131,7 +139,7 @@ def user_downstream_info(phone):
     try:
         relationships = Relationship.objects().filter(upstream_phone=phone).order_by('id')
     except:
-        return False
+        relationships = None
     downstream_info = []
     if relationships:
         for relationship in relationships:
@@ -140,8 +148,8 @@ def user_downstream_info(phone):
             except:
                 ret = None
             if ret:
-                downstream_info.append({
-                    'downstream_phone': ret.phone,
-                    'downstream_beans': ret.total_beans,
-                })
+                ret_data = {}
+                for row in ret:
+                    ret_data[str(row)] = str(ret[row])
+                downstream_info.append(ret_data)
     return downstream_info

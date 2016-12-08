@@ -25,11 +25,7 @@ def index(request, phone):
 @auth_wrapper
 def info(request, phone):
     ret = user_info(phone)
-    ret_data = {}
-    if ret:
-        for row in ret:
-            ret_data[str(row)] = str(ret[row])
-    response = JsonResponse(ret_data, safe=False)
+    response = JsonResponse(ret, safe=False)
     return response
 
 
@@ -83,23 +79,19 @@ def bean_list(request, phone, page):
 @auth_wrapper
 def upstream_downstream_beans(request, phone):
     return_data = {
-        'upstream_phone': None,  # 上级手机号
-        'upstream_beans': 0,  # 上级迈豆
-        'downstream': [],  # 下级信息列表  'downstream_phone': 手机号, 'downstream_beans': 迈豆,
-        'user_phone': None,  # 用户手机号
-        'total_beans': 0,  # 用户迈豆
+        'upstream': {},
+        'downstream': [],
+        'user_info': {},
     }
     # user_info
     user = user_info(phone)
     if user:
-        return_data.update(total_beans=user.total_beans)
-        return_data.update(user_phone=user.phone)
+        return_data.update(user_info=user)
 
     # upstream_info
     upstream = user_upstream_info(phone)
     if upstream:
-        return_data.update(upstream_phone=upstream.phone)
-        return_data.update(upstream_beans=upstream.total_beans)
+        return_data.update(upstream=upstream)
 
     # downstream_info
     downstream = user_downstream_info(phone)
