@@ -17,5 +17,5 @@ class Relationship(Document):
 
     meta = {
         'indexs': ['upstream_phone', 'downstream_phone'],
-        'collection': 'relations'
+        'collection': 'relationships'
     }
