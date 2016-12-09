@@ -7,10 +7,11 @@ var vm_character_relationship_list = new Vue({
     },
     methods: {
         is_show: function(e) {
-            if (typeof(e) == 'object' || e == 'None') {
-                return false;
+            var hide = ['id', 'longitude', 'latitude', 'title', 'office', 'city'];
+            if (hide.indexOf(e) < 0) {
+                return true;
             }
-            return true;
+            return false;
         },
         refresh: function(e) {
             var vm = this;

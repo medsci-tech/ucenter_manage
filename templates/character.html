@@ -13,19 +13,18 @@
                     <button class="button button-borderless right" @click='refresh(0)'><i class="fa fa-refresh"></i></button>
                 </div>
                 <div class="table-responsive">
-                     <table class="table table-striped table-hover table-bordered" v-cloak>
-                    <thead></thead>
-                    <tbody>
-                        <template v-for="(key, value) in data">
-                            <tr v-if="is_show(value)">
-                                <th class="text-right">[[key]]</th>
-                                <td>[[value]]</td>
-                            </tr>
-                        </template>
-                    </tbody>
-                </table>
+                    <table class="table table-striped table-hover table-bordered" v-cloak>
+                        <thead></thead>
+                        <tbody>
+                            <template v-for="(key, value) in data">
+                                <tr v-if="is_show(value)">
+                                    <th class="text-right">[[key]]</th>
+                                    <td>[[value]]</td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
                 </div>
-               
             </div>
         </div>
         <div class="col-sm-12 col-md-7">
@@ -46,14 +45,16 @@
                     Character Downstream List
                     <button class="button button-borderless right" @click='refresh(0)'><i class="fa fa-refresh"></i></button>
                 </div>
-                <div class="table-responsive">
+                <div class="table-responsive" v-if='data.length != 0'>
                     <table class="table table-striped table-hover table-bordered" v-cloak>
                         <tbody>
                             <tr>
-                                <th v-for="(key, value) in data[0]">[[ key ]]</th>
+                                <th v-for="(key, value) in data[0]" v-if="is_show(key)">[[ key ]]</th>
+                                <th>Info</th>
                             </tr>
                             <tr v-for="item in data">
-                                <td v-for="(key, value) in item">[[ value ]]</td>
+                                <td v-for="(key, value) in item" v-if="is_show(key)">[[ value ]]</td>
+                                <td><a class="btn btn-primary btn-xs" href="/characters/[[ item.phone ]]"> Info </a></td>
                             </tr>
                         </tbody>
                     </table>

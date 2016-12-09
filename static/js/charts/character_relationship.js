@@ -25,9 +25,11 @@ var vm_character_relationship = new Vue({
                     normal: {
                         color: color[0]
                     }
-                }
+                },
+                x: 50,
+                y: 50,
             })
-            if (this.get_data.upstream) {
+            if (!upstream) {
                 links.push({
                     source: upstream.phone,
                     target: user.phone,
@@ -41,7 +43,7 @@ var vm_character_relationship = new Vue({
                 nodes.push({
                     name: upstream.phone,
                     value: upstream.total_beans,
-                    symbolSize: Math.log(upstream.total_beans + 100) * 2,
+                    symbolSize: Math.log(upstream.total_beans + 1000) * 2,
                     itemStyle: {
                         normal: {
                             color: color[2]
@@ -82,6 +84,10 @@ var vm_character_relationship = new Vue({
     methods: {
         chart: function() {
             $('#' + this.title + '_chart').height(this.box_size.height);
+            if (this.get_data.downstream.length <= 1) {
+                $('#' + this.title + '_chart').height(200);
+            };
+            var vm = this;
 
             var option = {
                 color: color,
@@ -89,21 +95,6 @@ var vm_character_relationship = new Vue({
                 //     text: this.title
                 // },
                 tooltip: {},
-                legend: {
-                    data: this.data.category,
-                    formatter: function(name) {
-                        if (name < 0) {
-                            name = -name;
-                            return 'upstream' + name
-                        }
-                        if (name == 0) {
-                            return 'user'
-                        }
-                        if (name > 0) {
-                            return 'downstream' + name
-                        }
-                    }
-                },
                 series: [{
                     // name: '123',
                     type: 'graph',
@@ -113,10 +104,10 @@ var vm_character_relationship = new Vue({
                     force: {
                         repulsion: 50,
                         gravity: 0,
-                        edgeLength: [80, 120],
+                        edgeLength: [30, 200],
                     },
-                    data: this.data.nodes,
-                    links: this.data.links,
+                    data: vm.data.nodes,
+                    links: vm.data.links,
                     label: {
                         normal: {
                             show: true,
@@ -128,8 +119,15 @@ var vm_character_relationship = new Vue({
                     nodeScaleRatio: 0,
                 }]
             };
-            var chart = echarts.init(document.getElementById(this.title + '_chart'));
+            var chart = echarts.init(document.getElementById(vm.title + '_chart'));
             chart.setOption(option);
+
+            chart.on('click', function(a) {
+                if (a.dataType == 'node' && a.name != vm.get_data.user_info.phone) {
+
+                    window.location.href = '/characters/' + a.name;
+                }
+            })
         },
         refresh: function(e) {
             var vm = this;
