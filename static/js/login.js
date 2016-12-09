@@ -45,7 +45,7 @@ var login = new Vue({
                 $.get('check_code/' + this.phone + '/' + this.code, {}, function(data) {
                     if (data.error) {
                         login.error_msg = data.msg;
-                        $('#submit_btn').removeAttr('disabled', 'disabled');
+                        $('#submit_btn').removeAttr('disabled');
                     } else {
                         window.location.href='/home';
                     }
