@@ -8,8 +8,8 @@ var vm_count_doctor_by_month_titles = new Vue({
             height: 400
         },
         get_url: 'month_titles/2016',
- 
-       data_head: ['主治医师', '主任医师', '住院医师', '副主任医师']
+
+        data_head: ['主治医师', '主任医师', '住院医师', '副主任医师']
     },
     computed: {
         data: function() {
@@ -21,14 +21,15 @@ var vm_count_doctor_by_month_titles = new Vue({
                 result[this.data_head[i]] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
             }
             for (item in data) {
-
-                result[data[item].title][data[item].month - 1] = data[item].count
+                if (data[item].title != null) {
+                    result[data[item].title][data[item].month-1] = data[item].count
+                }
             }
             return result;
         },
 
         xAxis_data: function() {
-            var result = [0];
+            var result = [];
             for (var i = 1; i <= 31; i++) {
                 result.push(i);
             }
@@ -57,7 +58,7 @@ var vm_count_doctor_by_month_titles = new Vue({
 
 
             var option = {
-                 color: color,
+                color: color,
                 // title: {
                 //     text: this.title,
                 //     subtext: '',
@@ -73,7 +74,7 @@ var vm_count_doctor_by_month_titles = new Vue({
                     right: '5%',
                     feature: {
                         magicType: {
-                            type: ['bar', 'line','stack', 'tiled']
+                            type: ['bar', 'line', 'stack', 'tiled']
                         },
                     }
                 },

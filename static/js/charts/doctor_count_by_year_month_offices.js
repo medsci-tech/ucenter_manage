@@ -11,9 +11,16 @@ var vm_count_doctor_by_year_offices = new Vue({
     },
     computed: {
         data: function() {
+            var del = [];
             var data = this.get_data.map(function(item) {
+                if (item.office == null) {
+                    del.push({
+                        value: item.count,
+                        name: item.office
+                    })
+                };
                 return {
-                    value: item.count,  
+                    value: item.count,
                     name: item.office
                 }
             })
@@ -21,15 +28,20 @@ var vm_count_doctor_by_year_offices = new Vue({
             data.sort(function(a, b) {
                 return b.value - a.value;
             })
+
+            for( i in del ){
+                data.splice(data.indexOf(del[i]));
+            }
+
             return data;
         },
         data_head: function() {
             var result = [];
             for (item in this.data) {
-                if (this.data[item].name == null) {
-                    this.data[item].name = '未指定'
+                if (this.data[item].name != null) {
+
+                    result.push(this.data[item].name);
                 }
-                result.push(this.data[item].name);
 
                 if (this.data[item].name == '内分泌科') {
                     this.data[item].itemStyle = {
@@ -121,6 +133,21 @@ var vm_count_doctor_by_year_offices = new Vue({
             };
             var chart = echarts.init(document.getElementById(this.title + '_chart'));
             chart.setOption(option);
+        },
+        refresh: function(e) {
+            var vm = this;
+            if (e == 0) {
+                $.get(vm.get_url, {}, function(data) {
+                    vm.get_data = data;
+                    vm.chart();
+                });
+            } else {
+                $.get(e, {}, function(data) {
+                    vm.get_data = data;
+                    vm.chart();
+                });
+            }
+
         }
     },
     compiled: function() {

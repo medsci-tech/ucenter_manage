@@ -11,12 +11,26 @@ var vm_count_doctor_by_year_titles_pie = new Vue({
     },
     computed: {
         data: function() {
+
+            var del = [];
+        
             var data = this.get_data.map(function(item) {
+                if (item.title == null) {
+                    del.push({
+                        value: item.count,
+                        name: item.title
+                    })
+                };
                 return {
                     value: item.count,
                     name: item.title
                 }
             })
+
+            for( i in del ){
+                data.splice(data.indexOf(del[i]));
+            }
+
             return data;
         },
         data_head: function() {
