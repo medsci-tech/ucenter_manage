@@ -70,7 +70,7 @@ var vm_character_count_pie = new Vue({
                     // }
                 }]
             };
-            var chart = echarts.init(document.getElementById(this.title + '_chart'));
+            var chart = echarts.init(document.getElementById('#chart-all-pie'));
             chart.setOption(option);
         },
         refresh: function(e) {

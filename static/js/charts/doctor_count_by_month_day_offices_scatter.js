@@ -58,7 +58,7 @@ var vm_count_doctor_by_month_offices_scatter = new Vue({
 
         xAxis_data: function() {
             var result = [];
-            for (var i = 1; i <= 31; i++) {
+            for (var i = 0; i <= 31; i++) {
                 result.push(i);
             }
             return result;

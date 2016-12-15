@@ -9,7 +9,7 @@ var vm_count_doctor_by_month_titles = new Vue({
         },
         get_url: 'month_titles/2016',
  
-       data_head: ['主治医师', '主任医师', '住院医师', '副主任医师', '1']
+       data_head: ['主治医师', '主任医师', '住院医师', '副主任医师']
     },
     computed: {
         data: function() {
@@ -28,7 +28,7 @@ var vm_count_doctor_by_month_titles = new Vue({
         },
 
         xAxis_data: function() {
-            var result = [];
+            var result = [0];
             for (var i = 1; i <= 31; i++) {
                 result.push(i);
             }
