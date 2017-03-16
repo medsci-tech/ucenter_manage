@@ -35,7 +35,7 @@
                 <div class="panel-heading">
                     Count User by Day 
                     <select class="form-control" v-model="select_year">
-                        <option v-for="i in [2016]" value="[[i]]" v-text="i"></option>
+                        <option v-for="i in [2016, 2017]" value="[[i]]" v-text="i"></option>
                     </select>
                     <select class="form-control" v-model="select_month">
                         <option v-for="i in 12" value="[[i+1]]" v-text="i+1"></option>
@@ -94,7 +94,7 @@
                 <div class="panel-heading" >
                     Count Bean by Day 
                     <select class="form-control" v-model="select_year">
-                        <option v-for="i in [2016]" value="[[i]]" v-text="i"></option>
+                        <option v-for="i in [2016, 2017]" value="[[i]]" v-text="i"></option>
                     </select>
                     <select class="form-control" v-model="select_month">
                         <option v-for="i in 12" value="[[i+1]]" v-text="i+1"></option>

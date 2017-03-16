@@ -26,7 +26,7 @@ var login = new Vue({
                 function timer() {
                     i--;
                     $(e.target).text('resend after ' + i + 'sec');
-                    if (i == 0) {
+                    if (i <= 0) {
                         clearTimeout(timer);
                         $(e.target).removeAttr("disabled");
                         $(e.target).text('resend');
